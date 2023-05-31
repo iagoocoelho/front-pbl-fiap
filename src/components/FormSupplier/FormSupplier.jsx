@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import * as suppliersActions from "store/suppliers/actions";
 import { UF } from "Util/variables";
 import Header from "components/header/Header";
-import { useLocation, redirect } from "react-router-dom";
+import { useLocation, redirect, useNavigate } from "react-router-dom";
 import "./formSupplier.scss";
 
 export const FormSupplier = ({
@@ -14,11 +14,12 @@ export const FormSupplier = ({
   registerSupplierRequest,
   editSupplierRequest,
   getSupplierByIdRequest,
-  getSupplierListClean,
+  getSupplierByIdClean,
   editMode,
   supplier,
 }) => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const isFirstRender = useRef(true);
 
   useEffect(() => {
@@ -28,9 +29,9 @@ export const FormSupplier = ({
     }
 
     return () => {
-      getSupplierListClean();
+      getSupplierByIdClean();
     };
-  }, [getSupplierByIdRequest, getSupplierListClean, editMode, pathname]);
+  }, [getSupplierByIdRequest, getSupplierByIdClean, editMode, pathname]);
 
   useEffect(() => {
     if (!supplier.loading && supplier.success) setData(supplier.data);
@@ -65,7 +66,7 @@ export const FormSupplier = ({
 
     if (editMode) {
       editSupplierRequest(data.id, data);
-      return
+      return;
     }
 
     registerSupplierRequest(data);
@@ -284,7 +285,12 @@ export const FormSupplier = ({
 
             <Row>
               <Col className="text-sm-center py-4">
-                <button variant="primary" className="btn-blue me-4" type="button">
+                <button
+                  variant="primary"
+                  className="btn-blue me-4"
+                  type="button"
+                  onClick={() => navigate("/")}
+                >
                   Voltar
                 </button>
 
@@ -332,13 +338,13 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(suppliersActions.editSupplierRequest(id, data));
     },
     deleteSupplierRequest: (id, redirect) => {
-      dispatch(suppliersActions.deleteSupplierRequest(id,redirect));
+      dispatch(suppliersActions.deleteSupplierRequest(id, redirect));
     },
     getSupplierByIdRequest: (id) => {
       dispatch(suppliersActions.getSupplierByIdRequest(id));
     },
-    getSupplierListClean: () => {
-      dispatch(suppliersActions.getSupplierListClean());
+    getSupplierByIdClean: () => {
+      dispatch(suppliersActions.getSupplierByIdClean());
     },
   };
 };

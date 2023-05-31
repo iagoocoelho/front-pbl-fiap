@@ -65,7 +65,7 @@ export function* getSupplierByIdRequest(action) {
 
 export function* getSupplierListRequest() {
   try {
-    const { data } = yield call(Api.get, "/cliente-fornecedor/all");
+    const { data } = yield call(Api.get, "/cliente-fornecedor");
 
     yield put(getSupplierListSuccess(data));
   } catch (error) {
