@@ -31,7 +31,7 @@ export const FormSupplier = ({
   }, [getSupplierByIdRequest, getSupplierListClean, editMode, pathname]);
 
   useEffect(() => {
-    if (supplier.loading && supplier.success) setData(supplier.data);
+    if (!supplier.loading && supplier.success) setData(supplier.data);
   }, [supplier]);
 
   const [data, setData] = useState({
