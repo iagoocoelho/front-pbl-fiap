@@ -6,6 +6,7 @@ import {
   getSupplierListRequest,
   deleteSupplierRequest,
   getSupplierByIdRequest,
+  editSupplierRequest
 } from "./suppliers/sagas";
 import { suppliersTypes } from "./suppliers/types";
 
@@ -14,6 +15,10 @@ export default function* rootSaga() {
     takeLatest(
       suppliersTypes.REGISTER_SUPPLIER_REQUEST,
       registerSupplierRequest
+    ),
+    takeLatest(
+      suppliersTypes.EDIT_SUPPLIER_REQUEST,
+      editSupplierRequest
     ),
     takeLatest(
       suppliersTypes.GET_SUPPLIER_LIST_REQUEST,
