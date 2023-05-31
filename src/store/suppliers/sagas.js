@@ -88,7 +88,7 @@ export function* deleteSupplierRequest(action) {
       })
     );
 
-    yield call(action.payload.redirect("/pathname"));
+    yield call(action.payload.redirect("/"));
   } catch (error) {
     yield put(
       showToastr({
