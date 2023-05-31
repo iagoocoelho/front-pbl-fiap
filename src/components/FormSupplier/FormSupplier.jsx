@@ -65,6 +65,7 @@ export const FormSupplier = ({
 
     if (editMode) {
       editSupplierRequest(data);
+      return
     }
 
     registerSupplierRequest(data);

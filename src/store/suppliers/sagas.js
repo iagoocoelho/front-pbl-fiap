@@ -74,7 +74,6 @@ export function* getSupplierListRequest() {
 }
 
 export function* deleteSupplierRequest(action) {
-  debugger
   try {
     const { data } = yield call(
       Api.delete,
