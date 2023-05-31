@@ -1,4 +1,4 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, delay } from "redux-saga/effects";
 import { Api } from "common/api";
 import {
   registerSupplierSuccess,
@@ -23,11 +23,15 @@ export function* registerSupplierRequest(action) {
     yield put(
       showToastr({ type: "success", message: "Cadastrado feito com sucesso!" })
     );
+    yield delay(1500);
+    yield call((window.location.href = "/"));
   } catch (error) {
     yield put(
       showToastr({ type: "danger", message: "Falha ao cadastrar o fornecedor" })
     );
     yield put(registerSupplierFailure());
+    yield delay(1500);
+    yield call((window.location.href = "/"));
   }
 }
 
@@ -42,11 +46,15 @@ export function* editSupplierRequest(action) {
     yield put(
       showToastr({ type: "success", message: "Editado feito com sucesso!" })
     );
+    yield delay(1500);
+    yield call((window.location.href = "/"));
   } catch (error) {
     yield put(
       showToastr({ type: "danger", message: "Falha ao editar o fornecedor" })
     );
     yield put(editSupplierFailure());
+    yield delay(1500);
+    yield call((window.location.href = "/"));
   }
 }
 
@@ -88,6 +96,7 @@ export function* deleteSupplierRequest(action) {
       })
     );
 
+    yield delay(1500);
     yield call((window.location.href = "/"));
   } catch (error) {
     yield put(
@@ -96,6 +105,7 @@ export function* deleteSupplierRequest(action) {
         message: "Falha ao deletar o fornecedor",
       })
     );
+    yield delay(1500);
     yield call((window.location.href = "/"));
   }
 }
