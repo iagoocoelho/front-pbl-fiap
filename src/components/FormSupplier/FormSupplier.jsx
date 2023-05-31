@@ -224,7 +224,7 @@ export const FormSupplier = ({
                 <Form.Label htmlFor="estado">Estado</Form.Label>
                 <Form.Select
                   id="estado"
-                  value={UF.find((x) => x.sigla === data.endereco?.estado).sigla || ''}
+                  value={UF.find((x) => x.sigla === data.endereco.estado)?.sigla || ''}
                   onChange={(e) => {
                     setData({
                       ...data,
