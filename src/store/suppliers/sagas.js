@@ -5,6 +5,8 @@ import {
   registerSupplierFailure,
   getSupplierListSuccess,
   getSupplierListFailure,
+  getSupplierByIdSuccess,
+  getSupplierByIdFailure,
 } from "./actions";
 import { showToastr } from "store/toast/actions";
 
@@ -34,9 +36,9 @@ export function* getSupplierByIdRequest(action) {
       `/cliente-fornecedor/${action.payload.id}`
     );
 
-    // yield put(getSupplierListSuccess(data));
+    yield put(getSupplierByIdSuccess(data));
   } catch (error) {
-    // yield put(getSupplierListFailure(error));
+    yield put(getSupplierByIdFailure(error));
   }
 }
 
