@@ -25,7 +25,7 @@ export const SupplierList = ({ getSupplierListRequest, supplierList }) => {
             {supplierList.data.map((item) => {
               return (
                 <>
-                  <tr>
+                  <tr key={item.id}>
                     <td>{item.nome}</td>
                     <td>{item.documento}</td>
                     <td>{item.email}</td>
