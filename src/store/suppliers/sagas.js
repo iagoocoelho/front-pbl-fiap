@@ -35,7 +35,7 @@ export function* editSupplierRequest(action) {
   try {
     const { data } = yield call(
       Api.put,
-      "/cliente-fornecedor",
+      `/cliente-fornecedor/${action.payload.id}`,
       action.payload.data
     );
     yield put(editSupplierSuccess(data));

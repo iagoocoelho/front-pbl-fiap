@@ -8,8 +8,8 @@ export const registerSupplierSuccess = (data) =>
 export const registerSupplierFailure = (error) =>
   action(suppliersTypes.REGISTER_SUPPLIER_FAILURE, { error });
 
-export const editSupplierRequest = (data) =>
-  action(suppliersTypes.EDIT_SUPPLIER_REQUEST, { data });
+export const editSupplierRequest = ({id, data}) =>
+  action(suppliersTypes.EDIT_SUPPLIER_REQUEST, { id, data });
 export const editSupplierSuccess = (data) =>
   action(suppliersTypes.EDIT_SUPPLIER_SUCCESS, { data });
 export const editSupplierFailure = (error) =>

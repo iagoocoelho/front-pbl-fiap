@@ -64,7 +64,7 @@ export const FormSupplier = ({
     event.preventDefault();
 
     if (editMode) {
-      editSupplierRequest(data);
+      editSupplierRequest(data.id, data);
       return
     }
 
@@ -328,8 +328,8 @@ const mapDispatchToProps = (dispatch) => {
     registerSupplierRequest: (data) => {
       dispatch(suppliersActions.registerSupplierRequest(data));
     },
-    editSupplierRequest: (data) => {
-      dispatch(suppliersActions.editSupplierRequest(data));
+    editSupplierRequest: (id, data) => {
+      dispatch(suppliersActions.editSupplierRequest(id, data));
     },
     deleteSupplierRequest: (id) => {
       dispatch(suppliersActions.deleteSupplierRequest(id));
