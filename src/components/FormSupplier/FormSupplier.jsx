@@ -71,10 +71,11 @@ export const FormSupplier = ({
     registerSupplierRequest(data);
   };
 
-  const handleDelete = (event) => {
+  const handleDelete = async (event) => {
     event.preventDefault();
 
-    deleteSupplierRequest(data.id);
+    let teste = await deleteSupplierRequest(data.id);
+    debugger
   };
 
   return (
