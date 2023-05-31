@@ -1,6 +1,5 @@
 import React from "react";
 import { Nav, Navbar, Container } from "react-bootstrap";
-// import logo from "assets/img/logo-cartao-saude.png";
 import "./header.scss";
 
 export const Header = () => {
@@ -12,7 +11,7 @@ export const Header = () => {
       >
         <Container className="p-4">
           <Navbar.Brand href="#">
-            <img src={logo} className="img-fluid" alt="logo cartão saúde" />
+            {/* <img src={logo} className="img-fluid" alt="logo cartão saúde" /> */}
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse
