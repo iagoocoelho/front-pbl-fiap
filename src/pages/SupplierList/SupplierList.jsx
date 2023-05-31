@@ -32,7 +32,7 @@ export const SupplierList = ({ getSupplierListRequest, supplierList }) => {
                     <td>
                       <button
                         className="btn-blue"
-                        conClick={() =>
+                        onClick={() =>
                           navigate(`editar-fornecedor/${item.id}`)
                         }
                       >
