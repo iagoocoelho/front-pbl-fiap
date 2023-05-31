@@ -88,7 +88,7 @@ export function* deleteSupplierRequest(action) {
       })
     );
 
-    yield call(action.payload.redirect("/"));
+    yield call((window.location.href = "/"));
   } catch (error) {
     yield put(
       showToastr({
@@ -96,5 +96,6 @@ export function* deleteSupplierRequest(action) {
         message: "Falha ao deletar o fornecedor",
       })
     );
+    yield call((window.location.href = "/"));
   }
 }
