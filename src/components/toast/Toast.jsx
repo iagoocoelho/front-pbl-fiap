@@ -13,7 +13,7 @@ export const Toast = ({ options, hideToastr }) => {
     if (options.open) {
       let timer1 = setTimeout(() => {
         close();
-      }, 5000);
+      }, 2500);
 
       return () => {
         clearTimeout(timer1);

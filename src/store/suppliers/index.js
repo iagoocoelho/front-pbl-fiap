@@ -5,12 +5,94 @@ const INITIAL_STATE = {
     loading: false,
     success: false,
     error: false,
-    data: {}
+    data: {},
+  },
+  list: {
+    loading: false,
+    success: false,
+    error: false,
+    data: [],
+  },
+  supplierById: {
+    loading: false,
+    success: false,
+    error: false,
+    data: {},
   },
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case suppliersTypes.GET_SUPPLIER_LIST_REQUEST:
+      return {
+        ...state,
+        list: {
+          loading: true,
+          success: false,
+          error: false,
+        },
+      };
+    case suppliersTypes.GET_SUPPLIER_LIST_SUCCESS:
+      return {
+        ...state,
+        list: {
+          ...state.list,
+          data: action.payload.data,
+          success: true,
+          loading: false,
+          error: false,
+        },
+      };
+    case suppliersTypes.GET_SUPPLIER_LIST_FAILURE:
+      return {
+        ...state,
+        list: {
+          ...state.list,
+          success: false,
+          loading: false,
+          error: true,
+        },
+      };
+
+    case suppliersTypes.GET_SUPPLIER_BY_ID_REQUEST:
+      return {
+        ...state,
+        supplierById: {
+          loading: true,
+          success: false,
+          error: false,
+        },
+      };
+    case suppliersTypes.GET_SUPPLIER_BY_ID_SUCCESS:
+      return {
+        ...state,
+        supplierById: {
+          ...state.supplierById,
+          data: action.payload.data,
+          success: true,
+          loading: false,
+          error: false,
+        },
+      };
+    case suppliersTypes.GET_SUPPLIER_BY_ID_FAILURE:
+      return {
+        ...state,
+        supplierById: {
+          ...state.supplierById,
+          success: false,
+          loading: false,
+          error: true,
+        },
+      };
+
+    case suppliersTypes.GET_SUPPLIER_BY_ID_CLEAN:
+      return {
+        ...state,
+        supplierById: {
+          ...INITIAL_STATE.supplierById
+        },
+      };
+
     case suppliersTypes.REGISTER_SUPPLIER_REQUEST:
       return {
         ...state,
@@ -36,7 +118,6 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         register: {
           ...state.register,
-          data: action.payload.error,
           success: false,
           loading: false,
           error: true,
