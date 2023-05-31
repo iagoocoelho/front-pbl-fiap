@@ -10,7 +10,9 @@ import "./formSupplier.scss";
 
 export const FormSupplier = ({
   registerState,
+  deleteSupplierRequest,
   registerSupplierRequest,
+  editSupplierRequest,
   getSupplierByIdRequest,
   getSupplierListClean,
   editMode,
@@ -35,6 +37,7 @@ export const FormSupplier = ({
   }, [supplier]);
 
   const [data, setData] = useState({
+    id: null,
     nome: "",
     documento: "",
     email: "",
@@ -58,10 +61,19 @@ export const FormSupplier = ({
   });
 
   const handleSubmit = (event) => {
-    console.log(data);
     event.preventDefault();
 
+    if (editMode) {
+      editSupplierRequest(data);
+    }
+
     registerSupplierRequest(data);
+  };
+
+  const handleDelete = (event) => {
+    event.preventDefault();
+
+    deleteSupplierRequest(data.id);
   };
 
   return (
@@ -224,7 +236,10 @@ export const FormSupplier = ({
                 <Form.Label htmlFor="estado">Estado</Form.Label>
                 <Form.Select
                   id="estado"
-                  value={UF.find((x) => x.sigla === data.endereco.estado)?.sigla || ''}
+                  value={
+                    UF.find((x) => x.sigla === data.endereco.estado)?.sigla ||
+                    ""
+                  }
                   onChange={(e) => {
                     setData({
                       ...data,
@@ -268,15 +283,27 @@ export const FormSupplier = ({
 
             <Row>
               <Col className="text-sm-center py-4">
-                <button
-                  variant="primary"
-                  className="btn-red mx-4"
-                  type="button"
-                >
-                  Cancelar
+                <button variant="primary" className="btn-blue me-4" type="button">
+                  Voltar
                 </button>
 
-                <button variant="primary" className="btn-green" type="submit">
+                {editMode && (
+                  <button
+                    variant="primary"
+                    className="btn-red me-4"
+                    type="button"
+                    onClick={handleDelete}
+                  >
+                    Excluir
+                  </button>
+                )}
+
+                <button
+                  variant="primary"
+                  className="btn-green"
+                  type="submit"
+                  disabled={registerState.loading}
+                >
                   {registerState.loading ? "Enviando..." : "Enviar"}
                 </button>
               </Col>
@@ -299,6 +326,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     registerSupplierRequest: (data) => {
       dispatch(suppliersActions.registerSupplierRequest(data));
+    },
+    editSupplierRequest: (data) => {
+      dispatch(suppliersActions.editSupplierRequest(data));
+    },
+    deleteSupplierRequest: (id) => {
+      dispatch(suppliersActions.deleteSupplierRequest(id));
     },
     getSupplierByIdRequest: (id) => {
       dispatch(suppliersActions.getSupplierByIdRequest(id));

@@ -89,7 +89,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         supplierById: {
-          ...INITIAL_STATE.supplierById
+          ...INITIAL_STATE.supplierById,
         },
       };
 
@@ -107,7 +107,6 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         register: {
           ...state.register,
-          data: action.payload.data,
           success: true,
           loading: false,
           error: false,
@@ -123,6 +122,37 @@ const reducer = (state = INITIAL_STATE, action) => {
           error: true,
         },
       };
+
+    case suppliersTypes.EDIT_SUPPLIER_REQUEST:
+      return {
+        ...state,
+        register: {
+          loading: true,
+          success: false,
+          error: false,
+        },
+      };
+    case suppliersTypes.EDIT_SUPPLIER_SUCCESS:
+      return {
+        ...state,
+        register: {
+          ...state.register,
+          success: true,
+          loading: false,
+          error: false,
+        },
+      };
+    case suppliersTypes.EDIT_SUPPLIER_FAILURE:
+      return {
+        ...state,
+        register: {
+          ...state.register,
+          success: false,
+          loading: false,
+          error: true,
+        },
+      };
+
     default:
       return state;
   }

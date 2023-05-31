@@ -7,6 +7,8 @@ import {
   getSupplierListFailure,
   getSupplierByIdSuccess,
   getSupplierByIdFailure,
+  editSupplierSuccess,
+  editSupplierFailure,
 } from "./actions";
 import { showToastr } from "store/toast/actions";
 
@@ -26,6 +28,25 @@ export function* registerSupplierRequest(action) {
       showToastr({ type: "danger", message: "Falha ao cadastrar o fornecedor" })
     );
     yield put(registerSupplierFailure());
+  }
+}
+
+export function* editSupplierRequest(action) {
+  try {
+    const { data } = yield call(
+      Api.put,
+      "/cliente-fornecedor",
+      action.payload.data
+    );
+    yield put(editSupplierSuccess(data));
+    yield put(
+      showToastr({ type: "success", message: "Editado feito com sucesso!" })
+    );
+  } catch (error) {
+    yield put(
+      showToastr({ type: "danger", message: "Falha ao editar o fornecedor" })
+    );
+    yield put(editSupplierFailure());
   }
 }
 
@@ -53,6 +74,7 @@ export function* getSupplierListRequest() {
 }
 
 export function* deleteSupplierRequest(action) {
+  debugger
   try {
     const { data } = yield call(
       Api.delete,
