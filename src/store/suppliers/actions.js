@@ -31,5 +31,5 @@ export const getSupplierByIdSuccess = (data) =>
 export const getSupplierByIdFailure = (error) =>
   action(suppliersTypes.GET_SUPPLIER_BY_ID_FAILURE, { error });
 
-export const deleteSupplierRequest = (id) =>
-  action(suppliersTypes.DELETE_SUPPLIER_REQUEST, { id });
+export const deleteSupplierRequest = (id, redirect) =>
+  action(suppliersTypes.DELETE_SUPPLIER_REQUEST, { id, redirect });

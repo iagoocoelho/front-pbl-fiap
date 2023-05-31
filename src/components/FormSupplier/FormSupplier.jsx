@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import * as suppliersActions from "store/suppliers/actions";
 import { UF } from "Util/variables";
 import Header from "components/header/Header";
-import { useLocation } from "react-router-dom";
+import { useLocation, redirect } from "react-router-dom";
 import "./formSupplier.scss";
 
 export const FormSupplier = ({
@@ -71,11 +71,10 @@ export const FormSupplier = ({
     registerSupplierRequest(data);
   };
 
-  const handleDelete = async (event) => {
+  const handleDelete = (event) => {
     event.preventDefault();
 
-    let teste = await deleteSupplierRequest(data.id);
-    debugger
+    deleteSupplierRequest(data.id, redirect);
   };
 
   return (
@@ -332,8 +331,8 @@ const mapDispatchToProps = (dispatch) => {
     editSupplierRequest: (id, data) => {
       dispatch(suppliersActions.editSupplierRequest(id, data));
     },
-    deleteSupplierRequest: (id) => {
-      dispatch(suppliersActions.deleteSupplierRequest(id));
+    deleteSupplierRequest: (id, redirect) => {
+      dispatch(suppliersActions.deleteSupplierRequest(id,redirect));
     },
     getSupplierByIdRequest: (id) => {
       dispatch(suppliersActions.getSupplierByIdRequest(id));

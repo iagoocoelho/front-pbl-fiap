@@ -75,7 +75,7 @@ export function* getSupplierListRequest() {
 
 export function* deleteSupplierRequest(action) {
   try {
-    const { data } = yield call(
+    yield call(
       Api.delete,
       `/cliente-fornecedor/${action.payload.id}`,
       action.payload.id
@@ -88,7 +88,7 @@ export function* deleteSupplierRequest(action) {
       })
     );
 
-    return Promise.resolve(data);
+    yield call(action.payload.redirect("/pathname"));
   } catch (error) {
     yield put(
       showToastr({
@@ -96,6 +96,5 @@ export function* deleteSupplierRequest(action) {
         message: "Falha ao deletar o fornecedor",
       })
     );
-    return Promise.reject("Falha ao deletar");
   }
 }
