@@ -40,11 +40,11 @@ export const FormSupplier = ({
     email: "",
     telefones: [
       {
-        tipo: "",
+        tipo: "COMERCIAL",
         numero: "",
       },
       {
-        tipo: "",
+        tipo: "CELULAR",
         numero: "",
       },
     ],
