@@ -17,6 +17,7 @@ export const FormSupplier = ({
   getSupplierByIdClean,
   editMode,
   supplier,
+  deleteState,
 }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -300,8 +301,9 @@ export const FormSupplier = ({
                     className="btn-red me-4"
                     type="button"
                     onClick={handleDelete}
+                    disabled={deleteState.loading}
                   >
-                    Excluir
+                    {registerState.loading ? "Excluindo..." : "Excluir"}
                   </button>
                 )}
 
@@ -325,6 +327,7 @@ export const FormSupplier = ({
 const mapStateToProps = (state) => {
   return {
     registerState: state.suppliers.register,
+    deleteState: state.suppliers.delete,
     supplier: state.suppliers.supplierById,
   };
 };

@@ -28,8 +28,12 @@ export const getSupplierByIdSuccess = (data) =>
   action(suppliersTypes.GET_SUPPLIER_BY_ID_SUCCESS, { data });
 export const getSupplierByIdFailure = (error) =>
   action(suppliersTypes.GET_SUPPLIER_BY_ID_FAILURE, { error });
-  export const getSupplierByIdClean = () =>
+export const getSupplierByIdClean = () =>
   action(suppliersTypes.GET_SUPPLIER_BY_ID_CLEAN);
 
 export const deleteSupplierRequest = (id, navigate) =>
   action(suppliersTypes.DELETE_SUPPLIER_REQUEST, { id, navigate });
+export const deleteSupplierSuccess = () =>
+  action(suppliersTypes.DELETE_SUPPLIER_SUCCESS);
+export const deleteSupplierFailure = () =>
+  action(suppliersTypes.DELETE_SUPPLIER_FAILURE);

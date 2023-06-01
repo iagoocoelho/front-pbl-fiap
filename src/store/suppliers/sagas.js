@@ -9,6 +9,8 @@ import {
   getSupplierByIdFailure,
   editSupplierSuccess,
   editSupplierFailure,
+  deleteSupplierSuccess,
+  deleteSupplierFailure,
 } from "./actions";
 import { showToastr } from "store/toast/actions";
 
@@ -97,6 +99,7 @@ export function* deleteSupplierRequest(action) {
     );
 
     yield delay(1500);
+    yield put(deleteSupplierSuccess());
     yield call(action.payload.navigate);
   } catch (error) {
     yield put(
@@ -106,6 +109,7 @@ export function* deleteSupplierRequest(action) {
       })
     );
     yield delay(1500);
+    yield put(deleteSupplierFailure());
     yield call(action.payload.navigate);
   }
 }

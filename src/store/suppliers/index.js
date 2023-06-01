@@ -19,6 +19,11 @@ const INITIAL_STATE = {
     error: false,
     data: {},
   },
+  delete: {
+    loading: false,
+    success: false,
+    error: false,
+  },
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -147,6 +152,36 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         register: {
           ...state.register,
+          success: false,
+          loading: false,
+          error: true,
+        },
+      };
+
+    case suppliersTypes.DELETE_SUPPLIER_REQUEST:
+      return {
+        ...state,
+        delete: {
+          loading: true,
+          success: false,
+          error: false,
+        },
+      };
+    case suppliersTypes.DELETE_SUPPLIER_SUCCESS:
+      return {
+        ...state,
+        delete: {
+          ...state.delete,
+          success: true,
+          loading: false,
+          error: false,
+        },
+      };
+    case suppliersTypes.DELETE_SUPPLIER_FAILURE:
+      return {
+        ...state,
+        delete: {
+          ...state.delete,
           success: false,
           loading: false,
           error: true,
