@@ -19,18 +19,18 @@ export function* registerSupplierRequest(action) {
       "/cliente-fornecedor",
       action.payload.data
     );
-    yield put(registerSupplierSuccess(data));
     yield put(
       showToastr({ type: "success", message: "Cadastrado feito com sucesso!" })
     );
     yield delay(1500);
+    yield put(registerSupplierSuccess(data));
     yield call(action.payload.navigate);
   } catch (error) {
     yield put(
       showToastr({ type: "danger", message: "Falha ao cadastrar o fornecedor" })
     );
-    yield put(registerSupplierFailure());
     yield delay(1500);
+    yield put(registerSupplierFailure());
     yield call(action.payload.navigate);
   }
 }
@@ -42,18 +42,18 @@ export function* editSupplierRequest(action) {
       `/cliente-fornecedor/${action.payload.id}`,
       action.payload.data
     );
-    yield put(editSupplierSuccess(data));
     yield put(
       showToastr({ type: "success", message: "Editado feito com sucesso!" })
     );
     yield delay(1500);
+    yield put(editSupplierSuccess(data));
     yield call(action.payload.navigate);
   } catch (error) {
     yield put(
       showToastr({ type: "danger", message: "Falha ao editar o fornecedor" })
     );
-    yield put(editSupplierFailure());
     yield delay(1500);
+    yield put(editSupplierFailure());
     yield call(action.payload.navigate);
   }
 }
