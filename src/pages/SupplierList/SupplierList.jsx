@@ -24,8 +24,8 @@ export const SupplierList = ({ getSupplierListRequest, supplierList }) => {
           <tbody>
             {supplierList.data.map((item) => {
               return (
-                <>
-                  <tr key={item.id}>
+                <React.Fragment key={item.id}>
+                  <tr>
                     <td>{item.nome}</td>
                     <td>{item.documento}</td>
                     <td>{item.email}</td>
@@ -40,7 +40,7 @@ export const SupplierList = ({ getSupplierListRequest, supplierList }) => {
                       </button>
                     </td>
                   </tr>
-                </>
+                </React.Fragment>
               );
             })}
           </tbody>
