@@ -1,15 +1,15 @@
 import { action } from "typesafe-actions";
 import { suppliersTypes } from "./types";
 
-export const registerSupplierRequest = (data) =>
-  action(suppliersTypes.REGISTER_SUPPLIER_REQUEST, { data });
+export const registerSupplierRequest = (data, navigate) =>
+  action(suppliersTypes.REGISTER_SUPPLIER_REQUEST, { data, navigate });
 export const registerSupplierSuccess = (data) =>
   action(suppliersTypes.REGISTER_SUPPLIER_SUCCESS, { data });
 export const registerSupplierFailure = (error) =>
   action(suppliersTypes.REGISTER_SUPPLIER_FAILURE, { error });
 
-export const editSupplierRequest = (id, data) =>
-  action(suppliersTypes.EDIT_SUPPLIER_REQUEST, { id, data });
+export const editSupplierRequest = (id, data, navigate) =>
+  action(suppliersTypes.EDIT_SUPPLIER_REQUEST, { id, data, navigate });
 export const editSupplierSuccess = (data) =>
   action(suppliersTypes.EDIT_SUPPLIER_SUCCESS, { data });
 export const editSupplierFailure = (error) =>
@@ -31,5 +31,5 @@ export const getSupplierByIdFailure = (error) =>
   export const getSupplierByIdClean = () =>
   action(suppliersTypes.GET_SUPPLIER_BY_ID_CLEAN);
 
-export const deleteSupplierRequest = (id, redirect) =>
-  action(suppliersTypes.DELETE_SUPPLIER_REQUEST, { id, redirect });
+export const deleteSupplierRequest = (id, navigate) =>
+  action(suppliersTypes.DELETE_SUPPLIER_REQUEST, { id, navigate });

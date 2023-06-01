@@ -65,17 +65,17 @@ export const FormSupplier = ({
     event.preventDefault();
 
     if (editMode) {
-      editSupplierRequest(data.id, data);
+      editSupplierRequest(data.id, data, () => navigate("/"));
       return;
     }
 
-    registerSupplierRequest(data);
+    registerSupplierRequest(data, () => navigate("/"));
   };
 
   const handleDelete = (event) => {
     event.preventDefault();
 
-    deleteSupplierRequest(data.id, redirect);
+    deleteSupplierRequest(data.id, () => navigate("/"));
   };
 
   return (
@@ -331,14 +331,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    registerSupplierRequest: (data) => {
-      dispatch(suppliersActions.registerSupplierRequest(data));
+    registerSupplierRequest: (data, navigate) => {
+      dispatch(suppliersActions.registerSupplierRequest(data, navigate));
     },
-    editSupplierRequest: (id, data) => {
-      dispatch(suppliersActions.editSupplierRequest(id, data));
+    editSupplierRequest: (id, data, navigate) => {
+      dispatch(suppliersActions.editSupplierRequest(id, data, navigate));
     },
-    deleteSupplierRequest: (id, redirect) => {
-      dispatch(suppliersActions.deleteSupplierRequest(id, redirect));
+    deleteSupplierRequest: (id, navigate) => {
+      dispatch(suppliersActions.deleteSupplierRequest(id, navigate));
     },
     getSupplierByIdRequest: (id) => {
       dispatch(suppliersActions.getSupplierByIdRequest(id));

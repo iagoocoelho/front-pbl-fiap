@@ -23,15 +23,15 @@ export function* registerSupplierRequest(action) {
     yield put(
       showToastr({ type: "success", message: "Cadastrado feito com sucesso!" })
     );
-    yield put(delay(1500));
-    yield call((window.location.href = "/"));
+    yield delay(1500);
+    yield call(action.payload.navigate);
   } catch (error) {
     yield put(
       showToastr({ type: "danger", message: "Falha ao cadastrar o fornecedor" })
     );
     yield put(registerSupplierFailure());
-    yield put(delay(1500));
-    yield call((window.location.href = "/"));
+    yield delay(1500);
+    yield call(action.payload.navigate);
   }
 }
 
@@ -47,14 +47,14 @@ export function* editSupplierRequest(action) {
       showToastr({ type: "success", message: "Editado feito com sucesso!" })
     );
     yield delay(1500);
-    yield call(window.location.replace("/"));
+    yield call(action.payload.navigate);
   } catch (error) {
     yield put(
       showToastr({ type: "danger", message: "Falha ao editar o fornecedor" })
     );
     yield put(editSupplierFailure());
     yield delay(1500);
-    yield call(window.location.replace("/"));
+    yield call(action.payload.navigate);
   }
 }
 
@@ -96,8 +96,8 @@ export function* deleteSupplierRequest(action) {
       })
     );
 
-    yield put(delay(1500));
-    yield call((window.location.href = "/"));
+    yield delay(1500);
+    yield call(action.payload.navigate);
   } catch (error) {
     yield put(
       showToastr({
@@ -105,7 +105,7 @@ export function* deleteSupplierRequest(action) {
         message: "Falha ao deletar o fornecedor",
       })
     );
-    yield put(delay(1500));
-    yield call((window.location.href = "/"));
+    yield delay(1500);
+    yield call(action.payload.navigate);
   }
 }
