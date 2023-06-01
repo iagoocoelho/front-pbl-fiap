@@ -46,15 +46,15 @@ export function* editSupplierRequest(action) {
     yield put(
       showToastr({ type: "success", message: "Editado feito com sucesso!" })
     );
-    yield put(delay(1500));
-    yield call((window.location.href = "/"));
+    yield delay(1500);
+    yield call(window.location.replace("/"));
   } catch (error) {
     yield put(
       showToastr({ type: "danger", message: "Falha ao editar o fornecedor" })
     );
     yield put(editSupplierFailure());
-    yield put(delay(1500));
-    yield call((window.location.href = "/"));
+    yield delay(1500);
+    yield call(window.location.replace("/"));
   }
 }
 
