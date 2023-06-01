@@ -303,7 +303,7 @@ export const FormSupplier = ({
                     onClick={handleDelete}
                     disabled={deleteState.loading}
                   >
-                    {registerState.loading ? "Excluindo..." : "Excluir"}
+                    {deleteState.loading ? "Excluindo..." : "Excluir"}
                   </button>
                 )}
 
