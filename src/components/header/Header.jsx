@@ -13,19 +13,14 @@ export const Header = () => {
         className="shadow-sm p-0 navbar navbar-expand-lg navbar-light d-flex flex-column"
       >
         <Container className="p-4">
-          <Navbar.Brand href="#">
-            {/* <img src={logo} className="img-fluid" alt="logo cartão saúde" /> */}
-          </Navbar.Brand>
+          <Navbar.Brand href="#"></Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse
             id="basic-navbar-nav"
             className="justify-content-end text-center"
           >
-            <Nav
-              activeKey={pathname}
-              className="align-items-center"
-            >
-              {/* <Nav.Link href="/lista-pedidos">Lista pedidos</Nav.Link> */}
+            <Nav activeKey={pathname} className="align-items-center">
+              <Nav.Link href="/lista-pedidos">Listagem de Pedidos</Nav.Link>
               <Nav.Link href="/cadastro-fornecedor">
                 Cadastrar Fornecedor
               </Nav.Link>

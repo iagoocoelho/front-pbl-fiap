@@ -2,20 +2,20 @@ import React, { useEffect, useState, useRef } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 import { MainContainer } from "components/Container/MainContainer";
 import { connect } from "react-redux";
-import * as suppliersActions from "store/suppliers/actions";
+import * as customersActions from "store/customers/actions";
 import { UF } from "Util/variables";
 import { useLocation, redirect, useNavigate } from "react-router-dom";
-import "./formSupplier.scss";
+import "./formCustomer.scss";
 
-export const FormSupplier = ({
+export const FormCustomer = ({
   registerState,
-  deleteSupplierRequest,
-  registerSupplierRequest,
-  editSupplierRequest,
-  getSupplierByIdRequest,
-  getSupplierByIdClean,
+  deleteCustomerRequest,
+  registerCustomerRequest,
+  editCustomerRequest,
+  getCustomerByIdRequest,
+  getCustomerByIdClean,
   editMode,
-  supplier,
+  customer,
   deleteState,
 }) => {
   const { pathname } = useLocation();
@@ -25,17 +25,17 @@ export const FormSupplier = ({
   useEffect(() => {
     if (editMode && isFirstRender.current) {
       isFirstRender.current = false;
-      return getSupplierByIdRequest(pathname.split("/editar-fornecedor/")[1]);
+      return getCustomerByIdRequest(pathname.split("/editar-fornecedor/")[1]);
     }
 
     return () => {
-      getSupplierByIdClean();
+      getCustomerByIdClean();
     };
-  }, [getSupplierByIdRequest, getSupplierByIdClean, editMode, pathname]);
+  }, [getCustomerByIdRequest, getCustomerByIdClean, editMode, pathname]);
 
   useEffect(() => {
-    if (!supplier.loading && supplier.success) setData(supplier.data);
-  }, [supplier]);
+    if (!customer.loading && customer.success) setData(customer.data);
+  }, [customer]);
 
   const [data, setData] = useState({
     id: null,
@@ -65,26 +65,24 @@ export const FormSupplier = ({
     event.preventDefault();
 
     if (editMode) {
-      editSupplierRequest(data.id, data, () => navigate("/"));
+      editCustomerRequest(data.id, data, () => navigate("/"));
       return;
     }
 
-    registerSupplierRequest(data, () => navigate("/"));
+    registerCustomerRequest(data, () => navigate("/"));
   };
 
   const handleDelete = (event) => {
     event.preventDefault();
 
-    deleteSupplierRequest(data.id, () => navigate("/"));
+    deleteCustomerRequest(data.id, () => navigate("/"));
   };
 
   return (
     <MainContainer>
       <div>
         <div className="col py-4 title">
-          <h3 className="p-2">
-            {editMode ? "Editar" : "Cadastrar"} Fornecedor
-          </h3>
+          <h3 className="p-2">{editMode ? "Editar" : "Cadastrar"} Cliente</h3>
         </div>
 
         <Form onSubmit={handleSubmit}>
@@ -320,30 +318,30 @@ export const FormSupplier = ({
 
 const mapStateToProps = (state) => {
   return {
-    registerState: state.suppliers.register,
-    deleteState: state.suppliers.delete,
-    supplier: state.suppliers.supplierById,
+    registerState: state.customers.register,
+    deleteState: state.customers.delete,
+    customer: state.customers.customerById,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    registerSupplierRequest: (data, navigate) => {
-      dispatch(suppliersActions.registerSupplierRequest(data, navigate));
+    registerCustomerRequest: (data, navigate) => {
+      dispatch(customersActions.registerCustomerRequest(data, navigate));
     },
-    editSupplierRequest: (id, data, navigate) => {
-      dispatch(suppliersActions.editSupplierRequest(id, data, navigate));
+    editCustomerRequest: (id, data, navigate) => {
+      dispatch(customersActions.editCustomerRequest(id, data, navigate));
     },
-    deleteSupplierRequest: (id, navigate) => {
-      dispatch(suppliersActions.deleteSupplierRequest(id, navigate));
+    deleteCustomerRequest: (id, navigate) => {
+      dispatch(customersActions.deleteCustomerRequest(id, navigate));
     },
-    getSupplierByIdRequest: (id) => {
-      dispatch(suppliersActions.getSupplierByIdRequest(id));
+    getCustomerByIdRequest: (id) => {
+      dispatch(customersActions.getCustomerByIdRequest(id));
     },
-    getSupplierByIdClean: () => {
-      dispatch(suppliersActions.getSupplierByIdClean());
+    getCustomerByIdClean: () => {
+      dispatch(customersActions.getCustomerByIdClean());
     },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormSupplier);
+export default connect(mapStateToProps, mapDispatchToProps)(FormCustomer);

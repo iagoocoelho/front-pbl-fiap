@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Form, Row, Col, FloatingLabel, Button } from "react-bootstrap";
-import { MainContainer } from "components/container/MainContainer";
 import { connect } from "react-redux";
 import * as suppliersActions from "store/suppliers/actions";
 import { AiOutlineInfoCircle, AiFillPlayCircle } from "react-icons/ai";
@@ -17,18 +16,14 @@ export const StartOrder = ({ registerState, registerReset }) => {
   });
 
   return (
-    <MainContainer>
-      <Col className="py-4 title">
-        <h3 className="py-2">Lista de pedidos</h3>
-      </Col>
-
-      <Row className="mb-3">
+    <>
+      <Row className="mb-3 start-order">
         <Col className="col-8">Produção de Pedido 00001</Col>
         <Col className="col-4 text-sm-end">
-          <Button type="button" className="mx-3">
+          <Button type="button" className="mx-3" ria-label="Informações do pedido">
             <AiOutlineInfoCircle size={"20px"} />
           </Button>
-          <Button type="button">
+          <Button type="button" aria-label="Iniciar produção">
             <AiFillPlayCircle className="me-2" size={"20px"} />
             Iniciar produção
           </Button>
@@ -64,7 +59,7 @@ export const StartOrder = ({ registerState, registerReset }) => {
           />
         </FloatingLabel>
       </Row>
-    </MainContainer>
+    </>
   );
 };
 

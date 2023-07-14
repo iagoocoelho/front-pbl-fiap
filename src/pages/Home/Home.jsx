@@ -1,17 +1,12 @@
 import React from "react";
-import { MainContainer } from "components/container/MainContainer";
-import Header from "components/header/Header";
+import { MainContainer } from "components/Container/MainContainer";
 import SupplierList from "pages/SupplierList/SupplierList";
 
 export const Home = () => {
   return (
-    <>
-      <Header />
-
-      <MainContainer>
-        <SupplierList />
-      </MainContainer>
-    </>
+    <MainContainer>
+      <SupplierList />
+    </MainContainer>
   );
 };
 
