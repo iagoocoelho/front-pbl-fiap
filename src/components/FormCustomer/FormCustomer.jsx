@@ -25,7 +25,7 @@ export const FormCustomer = ({
   useEffect(() => {
     if (editMode && isFirstRender.current) {
       isFirstRender.current = false;
-      return getCustomerByIdRequest(pathname.split("/editar-fornecedor/")[1]);
+      return getCustomerByIdRequest(pathname.split("/editar-cliente/")[1]);
     }
 
     return () => {

@@ -37,8 +37,7 @@ export const FormMaterial = ({
   getMaterialByIdRequest,
   getMaterialByIdClean,
   editMode,
-  customer,
-  deleteState,
+  material,
 }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -47,7 +46,7 @@ export const FormMaterial = ({
   useEffect(() => {
     if (editMode && isFirstRender.current) {
       isFirstRender.current = false;
-      return getMaterialByIdRequest(pathname.split("/editar-fornecedor/")[1]);
+      return getMaterialByIdRequest(pathname.split("/editar-material/")[1]);
     }
 
     return () => {
@@ -56,8 +55,8 @@ export const FormMaterial = ({
   }, [getMaterialByIdRequest, getMaterialByIdClean, editMode, pathname]);
 
   useEffect(() => {
-    if (!customer.loading && customer.success) setData(customer.data);
-  }, [customer]);
+    if (!material.loading && material.success) setData(material.data);
+  }, [material]);
 
   const [data, setData] = useState({
     fornecedorId: null,
@@ -196,9 +195,8 @@ export const FormMaterial = ({
 
 const mapStateToProps = (state) => {
   return {
-    registerState: state.customers.register,
-    deleteState: state.customers.delete,
-    customer: state.customers.customerById,
+    registerState: state.materials.register,
+    material: state.materials.materialById,
   };
 };
 
