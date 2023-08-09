@@ -20,8 +20,18 @@ import {
 } from "./customers/sagas";
 import { customersTypes } from "./customers/types";
 
+// Material
+import {
+  registerMaterialRequest,
+  getMaterialListRequest,
+  getMaterialByIdRequest,
+  editMaterialRequest,
+} from "./materials/sagas";
+import { materialsTypes } from "./materials/types";
+
 export default function* rootSaga() {
   return yield all([
+    // SUPPLIER
     takeLatest(
       suppliersTypes.REGISTER_SUPPLIER_REQUEST,
       registerSupplierRequest
@@ -37,6 +47,7 @@ export default function* rootSaga() {
       getSupplierByIdRequest
     ),
 
+    // CUSTOMER
     takeLatest(
       customersTypes.REGISTER_CUSTOMER_REQUEST,
       registerCustomerRequest
@@ -50,6 +61,21 @@ export default function* rootSaga() {
     takeLatest(
       customersTypes.GET_CUSTOMER_LIST_REQUEST,
       getCustomerByIdRequest
+    ),
+
+    // MATERIAL
+    takeLatest(
+      materialsTypes.REGISTER_MATERIAL_REQUEST,
+      registerMaterialRequest
+    ),
+    takeLatest(materialsTypes.EDIT_MATERIAL_REQUEST, editMaterialRequest),
+    takeLatest(
+      materialsTypes.GET_MATERIAL_LIST_REQUEST,
+      getMaterialListRequest
+    ),
+    takeLatest(
+      materialsTypes.GET_MATERIAL_LIST_REQUEST,
+      getMaterialByIdRequest
     ),
   ]);
 }
