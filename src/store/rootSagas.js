@@ -6,9 +6,19 @@ import {
   getSupplierListRequest,
   deleteSupplierRequest,
   getSupplierByIdRequest,
-  editSupplierRequest
+  editSupplierRequest,
 } from "./suppliers/sagas";
 import { suppliersTypes } from "./suppliers/types";
+
+// Clientes
+import {
+  registerCustomerRequest,
+  getCustomerListRequest,
+  deleteCustomerRequest,
+  getCustomerByIdRequest,
+  editCustomerRequest,
+} from "./customers/sagas";
+import { customersTypes } from "./customers/types";
 
 export default function* rootSaga() {
   return yield all([
@@ -16,10 +26,7 @@ export default function* rootSaga() {
       suppliersTypes.REGISTER_SUPPLIER_REQUEST,
       registerSupplierRequest
     ),
-    takeLatest(
-      suppliersTypes.EDIT_SUPPLIER_REQUEST,
-      editSupplierRequest
-    ),
+    takeLatest(suppliersTypes.EDIT_SUPPLIER_REQUEST, editSupplierRequest),
     takeLatest(
       suppliersTypes.GET_SUPPLIER_LIST_REQUEST,
       getSupplierListRequest
@@ -28,6 +35,21 @@ export default function* rootSaga() {
     takeLatest(
       suppliersTypes.GET_SUPPLIER_BY_ID_REQUEST,
       getSupplierByIdRequest
+    ),
+
+    takeLatest(
+      customersTypes.REGISTER_CUSTOMER_REQUEST,
+      registerCustomerRequest
+    ),
+    takeLatest(customersTypes.EDIT_CUSTOMER_REQUEST, editCustomerRequest),
+    takeLatest(
+      customersTypes.GET_CUSTOMER_LIST_REQUEST,
+      getCustomerListRequest
+    ),
+    takeLatest(customersTypes.DELETE_CUSTOMER_REQUEST, deleteCustomerRequest),
+    takeLatest(
+      customersTypes.GET_CUSTOMER_LIST_REQUEST,
+      getCustomerByIdRequest
     ),
   ]);
 }
