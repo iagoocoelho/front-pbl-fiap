@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MainContainer } from "components/Container/MainContainer";
+import { MainContainer } from "components/container/mainContainer";
 import { Form, Row, Col } from "react-bootstrap";
 import "./login.scss";
 

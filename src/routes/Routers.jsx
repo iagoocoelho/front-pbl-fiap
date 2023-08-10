@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "pages/Home/Home";
-import Toast from "components/Toast/Toast";
-import FormSupplier from "components/FormSupplier/FormSupplier";
-import OrderList from "pages/OrderList/OrderList";
-import FormCustomer from "components/FormCustomer/FormCustomer";
-import FormMaterial from "components/FormMaterial/FormMaterial";
-import FormProduct from "components/FormProduct/FormProduct";
-import SupplierList from "pages/SupplierList/SupplierList";
+import Home from "pages/home/home";
+import Toast from "components/toast/toast";
+import FormSupplier from "components/formSupplier/formSupplier";
+import OrderList from "pages/orderList/orderList";
+import FormCustomer from "components/formCustomer/formCustomer";
+import FormMaterial from "components/formMaterial/formMaterial";
+import FormProduct from "components/formProduct/formProduct";
+import SupplierList from "pages/supplierList/supplierList";
 
 const Routers = () => (
   <>

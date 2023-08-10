@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Form, Row, Col } from "react-bootstrap";
-import { MainContainer } from "components/Container/MainContainer";
+import { MainContainer } from "components/container/mainContainer";
 import { connect } from "react-redux";
 import * as materialsActions from "store/materials/actions";
 import { useLocation, redirect, useNavigate } from "react-router-dom";

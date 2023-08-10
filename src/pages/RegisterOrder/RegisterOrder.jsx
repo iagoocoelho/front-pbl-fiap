@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Form, Row, Col, FloatingLabel } from "react-bootstrap";
-import { MainContainer } from "components/Container/MainContainer";
+import { MainContainer } from "components/container/mainContainer";
 import { connect } from "react-redux";
 import * as suppliersActions from "store/suppliers/actions";
 import CurrencyInput from "react-currency-input-field";

@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Col } from "react-bootstrap";
-import { MainContainer } from "components/Container/MainContainer";
-import StartOrder from "pages/StartOrder/StartOrder";
+import { MainContainer } from "components/container/mainContainer";
+import StartOrder from "pages/startOrder/startOrder";
 
 export const OrderList = () => {
   // TO DO: Request API de lita de pedidos para iniciar

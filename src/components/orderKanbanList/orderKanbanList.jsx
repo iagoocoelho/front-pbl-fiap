@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import "./orderKanbanList.scss";
-import MainContainer from "components/Container/MainContainer";
+import MainContainer from "components/container/mainContainer";
 import mock from "./mock.json";
 import { ORDER_STATUS } from "Util/variables";
 import KanbanCardColumn from "./kanbanCardColumn";
