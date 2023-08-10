@@ -3,7 +3,7 @@ import { Form, Row, Col, FloatingLabel } from "react-bootstrap";
 import { MainContainer } from "components/container/mainContainer";
 import { connect } from "react-redux";
 import * as suppliersActions from "store/suppliers/actions";
-import { UF } from "Util/variables";
+import { UF } from "utils/variables";
 import "./registerSupplier.scss";
 
 export const RegisterSupplier = ({

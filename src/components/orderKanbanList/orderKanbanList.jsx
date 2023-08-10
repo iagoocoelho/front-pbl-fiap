@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import "./orderKanbanList.scss";
 import MainContainer from "components/container/mainContainer";
 import mock from "./mock.json";
-import { ORDER_STATUS } from "Util/variables";
+import { ORDER_STATUS } from "utils/variables";
 import KanbanCardColumn from "./kanbanCardColumn";
 
 export const OrderKanbanList = () => {
