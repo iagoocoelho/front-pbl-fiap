@@ -40,7 +40,7 @@ export const FormSupplier = ({
   const [data, setData] = useState({
     id: null,
     nome: "",
-    documento: "",
+    cpfCnpj: "",
     email: "",
     telefone1: {
       tipo: "COMERCIAL",
@@ -102,9 +102,9 @@ export const FormSupplier = ({
               <Form.Control
                 id="doc"
                 placeholder="Documento"
-                value={data.documento}
+                value={data.cpfCnpj}
                 onChange={(e) =>
-                  setData({ ...data, documento: e.target.value })
+                  setData({ ...data, cpfCnpj: e.target.value })
                 }
               />
             </Form.Group>
