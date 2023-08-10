@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Navbar, Container } from "react-bootstrap";
+import { Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import "./header.scss";
 
@@ -19,14 +19,71 @@ export const Header = () => {
             id="basic-navbar-nav"
             className="justify-content-end text-center"
           >
-            <Nav activeKey={pathname} className="align-items-center">
-              <Nav.Link href="/lista-pedidos">Listagem de Pedidos</Nav.Link>
-              <Nav.Link href="/cadastro-fornecedor">
-                Cadastrar Fornecedor
-              </Nav.Link>
-              <Nav.Link href="/cadastro-cliente">Cadastrar Cliente</Nav.Link>
-              <Nav.Link href="/cadastro-material">Cadastrar Material</Nav.Link>
-              <Nav.Link href="/cadastro-produto">Cadastrar Produto</Nav.Link>
+            <Nav activeKey={pathname}>
+              {/* <NavDropdown title="Pedidos" >
+                <NavDropdown.Item>
+                  <Nav.Link href="/cadastrar-pedido">Listagem de Pedidos</Nav.Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Nav.Link href="/lista-pedidos">Listagem de Pedidos</Nav.Link>
+                </NavDropdown.Item>
+              </NavDropdown> */}
+
+              <NavDropdown title="Fornecedor">
+                <NavDropdown.Item>
+                  <Nav.Link href="/cadastro-fornecedor">
+                    Cadastrar Fornecedor
+                  </Nav.Link>
+                </NavDropdown.Item>
+
+                <NavDropdown.Item>
+                  <Nav.Link href="/listagem-fornecedor">
+                    Listagem de Fornecedores
+                  </Nav.Link>
+                </NavDropdown.Item>
+              </NavDropdown>
+
+              <NavDropdown title="Cliente">
+                <NavDropdown.Item>
+                  <Nav.Link href="/cadastro-cliente">
+                    Cadastrar Clientes
+                  </Nav.Link>
+                </NavDropdown.Item>
+
+                <NavDropdown.Item>
+                  <Nav.Link href="/listagem-cliente">
+                    Listagem de Clientes
+                  </Nav.Link>
+                </NavDropdown.Item>
+              </NavDropdown>
+
+              <NavDropdown title="Material">
+                <NavDropdown.Item>
+                  <Nav.Link href="/cadastro-material">
+                    Cadastrar Material
+                  </Nav.Link>
+                </NavDropdown.Item>
+
+                <NavDropdown.Item>
+                  <Nav.Link href="/listagem-material">
+                    Listagem de Materiais
+                  </Nav.Link>
+                </NavDropdown.Item>
+              </NavDropdown>
+
+              <NavDropdown title="Produto">
+                <NavDropdown.Item>
+                  <Nav.Link href="/cadastro-produto">
+                    Cadastrar Produto
+                  </Nav.Link>
+                </NavDropdown.Item>
+
+                <NavDropdown.Item>
+                  <Nav.Link href="/listagem-produto">
+                    Listagem de Produtos
+                  </Nav.Link>
+                </NavDropdown.Item>
+              </NavDropdown>
             </Nav>
           </Navbar.Collapse>
         </Container>
