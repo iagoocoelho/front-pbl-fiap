@@ -29,6 +29,15 @@ import {
 } from "./materials/sagas";
 import { materialsTypes } from "./materials/types";
 
+// Product
+import {
+  registerProductRequest,
+  getProductListRequest,
+  getProductByIdRequest,
+  editProductRequest,
+} from "./products/sagas";
+import { productsTypes } from "./products/types";
+
 export default function* rootSaga() {
   return yield all([
     // SUPPLIER
@@ -59,7 +68,7 @@ export default function* rootSaga() {
     ),
     takeLatest(customersTypes.DELETE_CUSTOMER_REQUEST, deleteCustomerRequest),
     takeLatest(
-      customersTypes.GET_CUSTOMER_LIST_REQUEST,
+      customersTypes.GET_CUSTOMER_BY_ID_REQUEST,
       getCustomerByIdRequest
     ),
 
@@ -74,8 +83,14 @@ export default function* rootSaga() {
       getMaterialListRequest
     ),
     takeLatest(
-      materialsTypes.GET_MATERIAL_LIST_REQUEST,
+      materialsTypes.GET_MATERIAL_BY_ID_REQUEST,
       getMaterialByIdRequest
     ),
+
+    // PRODUCT
+    takeLatest(productsTypes.REGISTER_PRODUCT_REQUEST, registerProductRequest),
+    takeLatest(productsTypes.EDIT_PRODUCT_REQUEST, editProductRequest),
+    takeLatest(productsTypes.GET_PRODUCT_LIST_REQUEST, getProductListRequest),
+    takeLatest(productsTypes.GET_PRODUCT_BY_ID_REQUEST, getProductByIdRequest),
   ]);
 }

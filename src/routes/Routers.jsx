@@ -5,6 +5,7 @@ import FormSupplier from "components/FormSupplier/FormSupplier";
 import OrderList from "pages/OrderList/OrderList";
 import FormCustomer from "components/FormCustomer/FormCustomer";
 import FormMaterial from "components/FormMaterial/FormMaterial";
+import FormProduct from "components/FormProduct/FormProduct";
 
 const Routers = () => (
   <>
@@ -21,6 +22,10 @@ const Routers = () => (
       <Route path={"/editar-cliente/:id"} element={<FormCustomer editMode />} />
 
       <Route path={"/cadastro-material"} element={<FormMaterial />} />
+      <Route path={"/editar-material/:id"} element={<FormMaterial editMode />} />
+
+      <Route path={"/cadastro-produto"} element={<FormProduct />} />
+      <Route path={"/editar-produto/:id"} element={<FormProduct editMode />} />
 
       <Route path={"/lista-pedidos"} element={<OrderList />} />
     </Routes>

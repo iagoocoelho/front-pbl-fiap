@@ -24,6 +24,9 @@ export const Header = () => {
               <Nav.Link href="/cadastro-fornecedor">
                 Cadastrar Fornecedor
               </Nav.Link>
+              <Nav.Link href="/cadastro-cliente">Cadastrar Cliente</Nav.Link>
+              <Nav.Link href="/cadastro-material">Cadastrar Material</Nav.Link>
+              <Nav.Link href="/cadastro-produto">Cadastrar Produto</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
