@@ -128,7 +128,7 @@ export const FormSupplier = ({
                 id="tel"
                 placeholder="Telefone Comercial"
                 type="number"
-                value={data.telefone1.numero}
+                value={data?.telefone1?.numero}
                 onChange={(e) => {
                   setData({
                     ...data,
@@ -143,7 +143,7 @@ export const FormSupplier = ({
               <Form.Control
                 id="cel"
                 placeholder="Celular"
-                value={data.telefone2.numero}
+                value={data?.telefone2?.numero}
                 onChange={(e) => {
                   setData({
                     ...data,
