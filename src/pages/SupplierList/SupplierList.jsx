@@ -27,7 +27,7 @@ export const SupplierList = ({ getSupplierListRequest, supplierList }) => {
                 <React.Fragment key={item.id}>
                   <tr>
                     <td>{item.nome}</td>
-                    <td>{item.documento}</td>
+                    <td>{item.cpfCnpj}</td>
                     <td>{item.email}</td>
                     <td>
                       <button
