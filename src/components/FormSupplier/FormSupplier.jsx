@@ -42,16 +42,14 @@ export const FormSupplier = ({
     nome: "",
     documento: "",
     email: "",
-    telefones: [
-      {
-        tipo: "COMERCIAL",
-        numero: "",
-      },
-      {
-        tipo: "CELULAR",
-        numero: "",
-      },
-    ],
+    telefone1: {
+      tipo: "COMERCIAL",
+      numero: "",
+    },
+    telefone2: {
+      tipo: "CELULAR",
+      numero: "",
+    },
     endereco: {
       logradouro: "",
       numero: "",
@@ -130,21 +128,11 @@ export const FormSupplier = ({
                 id="tel"
                 placeholder="Telefone Comercial"
                 type="number"
-                value={
-                  data.telefones.find((item) => item.tipo === "COMERCIAL")
-                    ?.numero
-                }
+                value={data.telefone1.numero}
                 onChange={(e) => {
-                  let newData = data.telefones.map((tel) => {
-                    if (tel.tipo === "COMERCIAL") {
-                      return { ...tel, numero: e.target.value };
-                    }
-                    return tel;
-                  });
-
                   setData({
                     ...data,
-                    telefones: newData,
+                    telefone2: { ...data.telefone1, numero: e.target.value },
                   });
                 }}
               />
@@ -155,20 +143,11 @@ export const FormSupplier = ({
               <Form.Control
                 id="cel"
                 placeholder="Celular"
-                value={
-                  data.telefones.find((item) => item.tipo === "CELULAR")?.numero
-                }
+                value={data.telefone2.numero}
                 onChange={(e) => {
-                  let newData = data.telefones.map((tel) => {
-                    if (tel.tipo === "CELULAR") {
-                      return { ...tel, numero: e.target.value };
-                    }
-                    return tel;
-                  });
-
                   setData({
                     ...data,
-                    telefones: newData,
+                    telefone2: { ...data.telefone2, numero: e.target.value },
                   });
                 }}
               />
