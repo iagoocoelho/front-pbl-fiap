@@ -33,7 +33,7 @@ export const SupplierList = ({ getSupplierListRequest, supplierList }) => {
                       <button
                         className="btn-blue"
                         onClick={() =>
-                          navigate(`editar-fornecedor/${item.id}`)
+                          navigate(`/editar-fornecedor/${item.id}`)
                         }
                       >
                         Editar

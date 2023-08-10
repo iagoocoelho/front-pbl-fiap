@@ -21,25 +21,13 @@ span {
   color: $textColorGray;
 }
 
-a.nav-link:not(.btn-green) {
+a.nav-link:not(.btn-green):not(.dropdown) {
   color: $mainColor;
   font-weight: bold;
   position: relative;
 
-  &.active,
   &:hover {
-    color: $mainColor;
-
-    &:after {
-      content: "";
-      height: 3px;
-      position: absolute;
-      width: calc(100% - 40px);
-      display: block;
-      bottom: -3px;
-      left: 20px;
-      background-color: $mainColor;
-    }
+    color: $green;
   }
 }
 
