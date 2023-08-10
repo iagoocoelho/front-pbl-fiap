@@ -13,8 +13,8 @@ const Routers = () => (
     <Routes>
       <Route path={"/"} element={<Home />} />
 
-      <Route path={"/listagem-fornecedor"} element={<FormSupplier />} />
-      <Route path={"/cadastro-fornecedor"} element={<SupplierList />} />
+      <Route path={"/cadastro-fornecedor"} element={<FormSupplier />} />
+      <Route path={"/listagem-fornecedor"} element={<SupplierList />} />
       <Route
         path={"/editar-fornecedor/:id"}
         element={<FormSupplier editMode />}
