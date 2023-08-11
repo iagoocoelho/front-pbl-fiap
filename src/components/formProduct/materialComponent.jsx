@@ -17,7 +17,7 @@ export const MaterialComponent = ({
         <Form.Label htmlFor="estado">Material {index + 1}</Form.Label>
         <Form.Select
           id="material"
-          // value={material.id}
+          value={material.idMaterial}
           onChange={(e) => {
             onChangeMaterial({ idMaterial: +e.target.value, index });
           }}
