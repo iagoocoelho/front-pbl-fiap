@@ -17,9 +17,9 @@ export const MaterialComponent = ({
         <Form.Label htmlFor="estado">Material {index + 1}</Form.Label>
         <Form.Select
           id="material"
-          value={material.id}
+          // value={material.id}
           onChange={(e) => {
-            onChangeMaterial({ id: +e.target.value, index });
+            onChangeMaterial({ idMaterial: +e.target.value, index });
           }}
         >
           <option value="">Selecione o material...</option>
@@ -38,6 +38,7 @@ export const MaterialComponent = ({
           className="form-control"
           name="quantidade"
           placeholder="Informe a quantidade"
+          value={material.quantidade}
           decimalsLimit={2}
           onValueChange={(value, name) => {
             onChangeMaterial({ quantidade: value, index });

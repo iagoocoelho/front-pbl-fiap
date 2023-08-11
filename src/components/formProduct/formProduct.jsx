@@ -99,11 +99,11 @@ export const FormProduct = ({
     setData({ ...data, detalhes: newList });
   };
 
-  const onChangeMaterial = ({ id, quantidade, index }) => {
+  const onChangeMaterial = ({ idMaterial, quantidade, index }) => {
     let newData = data.detalhes.map((detalhe, i) => {
       if (i === index) {
         return {
-          idMaterial: !!id ? id : detalhe.id,
+          idMaterial: !!idMaterial ? idMaterial : detalhe.id,
           quantidade: !!quantidade ? quantidade : detalhe.quantidade,
         };
       }
