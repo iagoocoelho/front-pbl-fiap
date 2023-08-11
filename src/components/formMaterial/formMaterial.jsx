@@ -42,7 +42,7 @@ export const FormMaterial = ({
   }, [material]);
 
   const [data, setData] = useState({
-    fornecedorId: null,
+    idFornecedor: null,
     descricao: "",
     unidade: "",
     codigo_fabricante: "",
@@ -76,11 +76,11 @@ export const FormMaterial = ({
               <Form.Label htmlFor="estado">Fornecedor</Form.Label>
               <Form.Select
                 id="fornecedor"
-                value={data.fornecedorId}
+                value={data.idFornecedor}
                 onChange={(e) => {
                   setData({
                     ...data,
-                    fornecedorId: +e.target.value,
+                    idFornecedor: +e.target.value,
                   });
                 }}
               >
