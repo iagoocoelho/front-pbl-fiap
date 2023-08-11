@@ -50,10 +50,10 @@ export const FormProduct = ({
   const [data, setData] = useState({
     descricao: "",
     preco: null,
-    material: [
+    detalhes: [
       {
-        id: null,
-        name: "",
+        idMaterial: null,
+        quantidade: "",
       },
     ],
   });
@@ -69,10 +69,10 @@ export const FormProduct = ({
     let formatData = {
       ...data,
       preco: +data.preco.replace(",", "."),
-      material: data.material.map((material) => {
+      detalhes: data.detalhes.map((detalhe) => {
         return {
-          ...material,
-          quantidade: +material.quantidade.replace(",", "."),
+          ...detalhe,
+          quantidade: +detalhe.quantidade.replace(",", "."),
         };
       }),
     };
@@ -81,40 +81,40 @@ export const FormProduct = ({
   };
 
   const newMaterial = () => {
-    let newList = data.material;
+    let newList = data.detalhes;
 
     newList.push({
-      id: null,
-      name: "",
+      idMaterial: null,
+      quantidade: "",
     });
 
-    setData({ ...data, material: newList });
+    setData({ ...data, detalhes: newList });
   };
 
   const removeMaterial = ({ index }) => {
-    if (data.material.length === 1) return;
+    if (data.detalhes.length === 1) return;
 
-    let newList = data.material.filter((material, i) => i !== index);
+    let newList = data.detalhes.filter((detalhe, i) => i !== index);
 
-    setData({ ...data, material: newList });
+    setData({ ...data, detalhes: newList });
   };
 
   const onChangeMaterial = ({ id, quantidade, index }) => {
-    let newData = data.material.map((material, i) => {
+    let newData = data.detalhes.map((detalhe, i) => {
       if (i === index) {
         return {
-          id: !!id ? id : material.id,
-          quantidade: !!quantidade ? quantidade : material.quantidade,
+          idMaterial: !!id ? id : detalhe.id,
+          quantidade: !!quantidade ? quantidade : detalhe.quantidade,
         };
       }
 
       return {
-        id: material.id,
-        quantidade: material.quantidade,
+        idMaterial: detalhe.id,
+        quantidade: detalhe.quantidade,
       };
     });
 
-    setData({ ...data, material: newData });
+    setData({ ...data, detalhes: newData });
   };
 
   return (
