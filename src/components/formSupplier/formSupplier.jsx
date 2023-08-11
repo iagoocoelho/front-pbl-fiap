@@ -67,13 +67,13 @@ export const FormSupplier = ({
       return;
     }
 
-    registerSupplierRequest(data, () => navigate("/"));
+    registerSupplierRequest(data, () => navigate("/listagem-fornecedor"));
   };
 
   const handleDelete = (event) => {
     event.preventDefault();
 
-    deleteSupplierRequest(data.id, () => navigate("/"));
+    deleteSupplierRequest(data.id, () => navigate("/listagem-fornecedor"));
   };
 
   return (
@@ -130,7 +130,7 @@ export const FormSupplier = ({
                 onChange={(e) => {
                   setData({
                     ...data,
-                    telefone2: { ...data.telefone1, numero: e.target.value },
+                    telefone1: { ...data.telefone1, numero: e.target.value },
                   });
                 }}
               />
