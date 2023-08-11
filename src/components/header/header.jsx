@@ -15,10 +15,7 @@ export const Header = () => {
         <Container className="p-4">
           <Navbar.Brand href="#"></Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse
-            id="basic-navbar-nav"
-            className="justify-content-end text-center"
-          >
+          <Navbar.Collapse className="justify-content-end text-center">
             <Nav activeKey={pathname}>
               {/* <NavDropdown title="Pedidos" >
                 <NavDropdown.Item>
