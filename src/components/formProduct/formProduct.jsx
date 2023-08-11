@@ -63,7 +63,7 @@ export const FormProduct = ({
     event.preventDefault();
 
     if (editMode) {
-      editProductRequest(data.id, data, () => navigate("/"));
+      editProductRequest(data.id, data, () => navigate("/listagem-produto"));
       return;
     }
 
@@ -78,7 +78,7 @@ export const FormProduct = ({
       }),
     };
 
-    registerProductRequest(formatData, () => navigate("/"));
+    registerProductRequest(formatData, () => navigate("/listagem-produto"));
   };
 
   const newMaterial = () => {
