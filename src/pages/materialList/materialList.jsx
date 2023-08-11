@@ -16,9 +16,9 @@ export const MaterialList = ({ getMaterialListRequest, materialsList }) => {
         <Table>
           <thead>
             <tr>
-              <th>Nome</th>
-              <th>Documento</th>
-              <th>Email</th>
+              <th>Fornecedor</th>
+              <th>Codigo do Fabricante</th>
+              <th>Descrição</th>
             </tr>
           </thead>
           <tbody>

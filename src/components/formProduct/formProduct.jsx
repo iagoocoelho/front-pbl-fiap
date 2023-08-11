@@ -3,7 +3,7 @@ import { Form, Row, Col } from "react-bootstrap";
 import { MainContainer } from "components/container/mainContainer";
 import { connect } from "react-redux";
 import * as productsActions from "store/products/actions";
-import { useLocation, redirect, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CurrencyInput from "react-currency-input-field";
 import MaterialComponent from "./materialComponent";
 import "./formProduct.scss";

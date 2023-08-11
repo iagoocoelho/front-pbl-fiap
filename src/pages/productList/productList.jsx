@@ -1,39 +1,37 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Table } from "react-bootstrap";
-import * as suppliersActions from "store/suppliers/actions";
+import * as productsActions from "store/products/actions";
 import { useNavigate } from "react-router-dom";
 
-export const SupplierList = ({ getSupplierListRequest, supplierList }) => {
+export const ProductList = ({ getProductListRequest, productList }) => {
   let navigate = useNavigate();
   useEffect(() => {
-    getSupplierListRequest();
-  }, [getSupplierListRequest]);
+    getProductListRequest();
+  }, [getProductListRequest]);
 
   return (
     <>
-      {!supplierList.loading && supplierList.success && (
+      {!productList.loading && productList.success && (
         <Table>
           <thead>
             <tr>
-              <th>Nome</th>
-              <th>Documento</th>
-              <th>Email</th>
+              <th>Descrição</th>
+              <th>Preço</th>
             </tr>
           </thead>
           <tbody>
-            {supplierList.data.map((item) => {
+            {productList.data.map((item) => {
               return (
                 <React.Fragment key={item.id}>
                   <tr>
-                    <td>{item.nome}</td>
-                    <td>{item.cpfCnpj}</td>
-                    <td>{item.email}</td>
+                    <td>{item.descricao}</td>
+                    <td>{item.preco}</td>
                     <td>
                       <button
                         className="btn-blue"
                         onClick={() =>
-                          navigate(`/editar-fornecedor/${item.id}`)
+                          navigate(`/editar-produto/${item.id}`)
                         }
                       >
                         Editar
@@ -52,16 +50,16 @@ export const SupplierList = ({ getSupplierListRequest, supplierList }) => {
 
 const mapStateToProps = (state) => {
   return {
-    supplierList: state.suppliers.list,
+    productList: state.products.list,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getSupplierListRequest: () => {
-      dispatch(suppliersActions.getSupplierListRequest());
+    getProductListRequest: () => {
+      dispatch(productsActions.getProductListRequest());
     },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SupplierList);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
