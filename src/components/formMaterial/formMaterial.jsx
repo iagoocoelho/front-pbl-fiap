@@ -4,7 +4,7 @@ import { MainContainer } from "components/container/mainContainer";
 import { connect } from "react-redux";
 import * as materialsActions from "store/materials/actions";
 import * as suppliersActions from "store/suppliers/actions";
-import { useLocation, redirect, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CurrencyInput from "react-currency-input-field";
 import "./formMaterial.scss";
 import { getSupplierListRequest } from "store/suppliers/sagas";

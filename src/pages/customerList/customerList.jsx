@@ -33,7 +33,7 @@ export const CustomerList = ({ getCustomerListRequest, customerList }) => {
                       <button
                         className="btn-blue"
                         onClick={() =>
-                          navigate(`/editar-fornecedor/${item.id}`)
+                          navigate(`/editar-cliente/${item.id}`)
                         }
                       >
                         Editar
@@ -58,8 +58,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getSupplierListRequest: () => {
-      dispatch(customersActions.getSupplierListRequest());
+    getCustomerListRequest: () => {
+      dispatch(customersActions.getCustomerListRequest());
     },
   };
 };

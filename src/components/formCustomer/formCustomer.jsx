@@ -4,7 +4,7 @@ import { MainContainer } from "components/container/mainContainer";
 import { connect } from "react-redux";
 import * as customersActions from "store/customers/actions";
 import { UF } from "utils/variables";
-import { useLocation, redirect, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./formCustomer.scss";
 
 export const FormCustomer = ({
@@ -70,11 +70,11 @@ export const FormCustomer = ({
     registerCustomerRequest(data, () => navigate("/listagem-cliente"));
   };
 
-  const handleDelete = (event) => {
-    event.preventDefault();
+  // const handleDelete = (event) => {
+  //   event.preventDefault();
 
-    deleteCustomerRequest(data.id, () => navigate("/listagem-cliente"));
-  };
+  //   deleteCustomerRequest(data.id, () => navigate("/listagem-cliente"));
+  // };
 
   return (
     <MainContainer>

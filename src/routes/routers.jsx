@@ -8,19 +8,21 @@ import FormMaterial from "components/formMaterial/formMaterial";
 import FormProduct from "components/formProduct/formProduct";
 import SupplierList from "pages/supplierList/supplierList";
 import MaterialList from "pages/materialList/materialList";
+import CustomerList from "pages/customerList/customerList";
 
 const Routers = () => (
   <>
     <Routes>
       <Route path={"/"} element={<Home />} />
 
-      <Route path={"/cadastro-fornecedor"} element={<FormSupplier />} />
       <Route path={"/listagem-fornecedor"} element={<SupplierList />} />
+      <Route path={"/cadastro-fornecedor"} element={<FormSupplier />} />
       <Route
         path={"/editar-fornecedor/:id"}
         element={<FormSupplier editMode />}
       />
 
+      <Route path={"/listagem-cliente"} element={<CustomerList />} />
       <Route path={"/cadastro-cliente"} element={<FormCustomer />} />
       <Route path={"/editar-cliente/:id"} element={<FormCustomer editMode />} />
 

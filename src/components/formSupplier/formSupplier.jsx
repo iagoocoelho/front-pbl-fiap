@@ -4,7 +4,7 @@ import { MainContainer } from "components/container/mainContainer";
 import { connect } from "react-redux";
 import * as suppliersActions from "store/suppliers/actions";
 import { UF } from "utils/variables";
-import { useLocation, redirect, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./formSupplier.scss";
 
 export const FormSupplier = ({
@@ -72,11 +72,11 @@ export const FormSupplier = ({
     registerSupplierRequest(data, () => navigate("/listagem-fornecedor"));
   };
 
-  const handleDelete = (event) => {
-    event.preventDefault();
+  // const handleDelete = (event) => {
+  //   event.preventDefault();
 
-    deleteSupplierRequest(data.id, () => navigate("/listagem-fornecedor"));
-  };
+  //   deleteSupplierRequest(data.id, () => navigate("/listagem-fornecedor"));
+  // };
 
   return (
     <MainContainer>
