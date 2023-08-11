@@ -7,6 +7,7 @@ import FormCustomer from "components/formCustomer/formCustomer";
 import FormMaterial from "components/formMaterial/formMaterial";
 import FormProduct from "components/formProduct/formProduct";
 import SupplierList from "pages/supplierList/supplierList";
+import MaterialList from "pages/materialList/materialList";
 
 const Routers = () => (
   <>
@@ -23,6 +24,7 @@ const Routers = () => (
       <Route path={"/cadastro-cliente"} element={<FormCustomer />} />
       <Route path={"/editar-cliente/:id"} element={<FormCustomer editMode />} />
 
+      <Route path={"/listagem-material"} element={<MaterialList />} />
       <Route path={"/cadastro-material"} element={<FormMaterial />} />
       <Route
         path={"/editar-material/:id"}

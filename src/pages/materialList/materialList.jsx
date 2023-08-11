@@ -33,9 +33,7 @@ export const MaterialList = ({ getMaterialListRequest, materialsList }) => {
                     <td>
                       <button
                         className="btn-blue"
-                        onClick={() =>
-                          navigate(`/editar-material/${item.id}`)
-                        }
+                        onClick={() => navigate(`/editar-material/${item.id}`)}
                       >
                         Editar
                       </button>
@@ -53,13 +51,13 @@ export const MaterialList = ({ getMaterialListRequest, materialsList }) => {
 
 const mapStateToProps = (state) => {
   return {
-    supplierList: state.suppliers.list,
+    materialsList: state.materials.list,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getSupplierListRequest: () => {
+    getMaterialListRequest: () => {
       dispatch(materialsActions.getMaterialListRequest());
     },
   };
