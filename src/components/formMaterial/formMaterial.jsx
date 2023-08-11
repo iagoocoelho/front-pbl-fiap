@@ -85,11 +85,12 @@ export const FormMaterial = ({
                 }}
               >
                 <option value="">Selecione o fornecedor</option>
-                {supplierList.map((fornecedor) => (
-                  <option key={fornecedor.id} value={fornecedor.id}>
-                    {fornecedor.nome}
-                  </option>
-                ))}
+                {supplierList.success &&
+                  supplierList?.data.map((fornecedor) => (
+                    <option key={fornecedor.id} value={fornecedor.id}>
+                      {fornecedor.nome}
+                    </option>
+                  ))}
               </Form.Select>
             </Form.Group>
 
