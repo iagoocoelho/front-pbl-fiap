@@ -53,13 +53,13 @@ export const FormMaterial = ({
     event.preventDefault();
 
     if (editMode) {
-      editMaterialRequest(data.id, data, () => navigate("/"));
+      editMaterialRequest(data.id, data, () => navigate("/listagem-material"));
       return;
     }
 
     registerMaterialRequest(
       { ...data, custo: +data.custo.replace(",", ".") },
-      () => navigate("/")
+      () => navigate("/listagem-material")
     );
   };
 
@@ -157,7 +157,7 @@ export const FormMaterial = ({
                 variant="primary"
                 className="btn-blue me-4"
                 type="button"
-                onClick={() => navigate("/listagem-material")}
+                onClick={() => navigate("/")}
               >
                 Voltar
               </button>
