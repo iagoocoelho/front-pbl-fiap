@@ -63,7 +63,7 @@ export const FormSupplier = ({
     event.preventDefault();
 
     if (editMode) {
-      editSupplierRequest(data.id, data, () => navigate("/"));
+      editSupplierRequest(data.id, data, () => navigate("/listagem-fornecedor"));
       return;
     }
 
