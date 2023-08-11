@@ -9,6 +9,7 @@ import FormProduct from "components/formProduct/formProduct";
 import SupplierList from "pages/supplierList/supplierList";
 import MaterialList from "pages/materialList/materialList";
 import CustomerList from "pages/customerList/customerList";
+import ProductList from "pages/productList/productList";
 
 const Routers = () => (
   <>
@@ -33,6 +34,7 @@ const Routers = () => (
         element={<FormMaterial editMode />}
       />
 
+      <Route path={"/listagem-produto"} element={<ProductList />} />
       <Route path={"/cadastro-produto"} element={<FormProduct />} />
       <Route path={"/editar-produto/:id"} element={<FormProduct editMode />} />
 
