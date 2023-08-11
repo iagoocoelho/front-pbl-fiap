@@ -154,7 +154,7 @@ export const FormProduct = ({
             </Form.Group>
           </Row>
 
-          {data.material.map((material, i) => {
+          {data.detalhes.map((material, i) => {
             return (
               <MaterialComponent
                 index={i}
