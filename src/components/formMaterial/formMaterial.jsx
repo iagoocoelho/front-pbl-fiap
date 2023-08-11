@@ -119,15 +119,15 @@ export const FormMaterial = ({
 
           <Row>
             <Form.Group as={Col} className="mb-3 col-9 col-sm-9">
-              <Form.Label htmlFor="codigo_fabricante">
+              <Form.Label htmlFor="codigoFabricante">
                 Nome técnico do Material
               </Form.Label>
               <Form.Control
-                id="codigo_fabricante"
+                id="codigoFabricante"
                 placeholder="Descreva o nome que o fornecedor usa para o material"
-                value={data.codigo_fabricante}
+                value={data.codigoFabricante}
                 onChange={(e) =>
-                  setData({ ...data, codigo_fabricante: e.target.value })
+                  setData({ ...data, codigoFabricante: e.target.value })
                 }
               />
             </Form.Group>
