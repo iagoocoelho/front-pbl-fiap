@@ -6,30 +6,8 @@ import * as productsActions from "store/products/actions";
 import { useLocation, useNavigate } from "react-router-dom";
 import CurrencyInput from "react-currency-input-field";
 import MaterialComponent from "./materialComponent";
+import * as materialsActions from "store/materials/actions";
 import "./formProduct.scss";
-
-let mockMaterial = [
-  {
-    id: 32132,
-    name: "Tecido Azul",
-  },
-  {
-    id: 321,
-    name: "Testeee Nome",
-  },
-  {
-    id: 365,
-    name: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit, eaque.",
-  },
-  {
-    id: 3,
-    name: "Lorem ipsum dolor sit.",
-  },
-  {
-    id: 975,
-    name: "Lorem ipsum dolor sit amet consectetur.",
-  },
-];
 
 export const FormProduct = ({
   registerState,
@@ -37,8 +15,10 @@ export const FormProduct = ({
   editProductRequest,
   getProductByIdRequest,
   getProductByIdClean,
+  getMaterialListRequest,
   editMode,
   product,
+  materialsList,
 }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -47,13 +27,21 @@ export const FormProduct = ({
   useEffect(() => {
     if (editMode && isFirstRender.current) {
       isFirstRender.current = false;
+
+      getMaterialListRequest();
       return getProductByIdRequest(pathname.split("/editar-produto/")[1]);
     }
 
     return () => {
       getProductByIdClean();
     };
-  }, [getProductByIdRequest, getProductByIdClean, editMode, pathname]);
+  }, [
+    getProductByIdRequest,
+    getProductByIdClean,
+    editMode,
+    pathname,
+    getMaterialListRequest,
+  ]);
 
   useEffect(() => {
     if (!product.loading && product.success) setData(product.data);
@@ -170,7 +158,7 @@ export const FormProduct = ({
             return (
               <MaterialComponent
                 index={i}
-                materialList={mockMaterial}
+                materialList={materialsList}
                 material={material}
                 onChangeMaterial={onChangeMaterial}
                 removeMaterial={removeMaterial}
@@ -218,6 +206,7 @@ const mapStateToProps = (state) => {
   return {
     registerState: state.products.register,
     product: state.products.productById,
+    materialsList: state.materials.list,
   };
 };
 
@@ -234,6 +223,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     getProductByIdClean: () => {
       dispatch(productsActions.getProductByIdClean());
+    },
+    getMaterialListRequest: () => {
+      dispatch(materialsActions.getMaterialListRequest());
     },
   };
 };
