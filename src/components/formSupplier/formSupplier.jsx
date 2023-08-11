@@ -63,7 +63,9 @@ export const FormSupplier = ({
     event.preventDefault();
 
     if (editMode) {
-      editSupplierRequest(data.id, data, () => navigate("/listagem-fornecedor"));
+      editSupplierRequest(data.id, data, () =>
+        navigate("/listagem-fornecedor")
+      );
       return;
     }
 
@@ -267,7 +269,7 @@ export const FormSupplier = ({
                 Voltar
               </button>
 
-              {editMode && (
+              {/* {editMode && (
                 <button
                   variant="primary"
                   className="btn-red me-4"
@@ -277,7 +279,7 @@ export const FormSupplier = ({
                 >
                   {deleteState.loading ? "Excluindo..." : "Excluir"}
                 </button>
-              )}
+              )} */}
 
               <button
                 variant="primary"
