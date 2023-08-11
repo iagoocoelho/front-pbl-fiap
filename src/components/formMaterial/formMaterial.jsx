@@ -76,7 +76,7 @@ export const FormMaterial = ({
               <Form.Label htmlFor="estado">Fornecedor</Form.Label>
               <Form.Select
                 id="fornecedor"
-                value={data.idFornecedor || data.fornecedor.id}
+                value={data.idFornecedor || data?.fornecedor?.id}
                 onChange={(e) => {
                   setData({
                     ...data,
