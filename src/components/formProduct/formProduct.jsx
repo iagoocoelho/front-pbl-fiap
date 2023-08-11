@@ -28,9 +28,10 @@ export const FormProduct = ({
     if (editMode && isFirstRender.current) {
       isFirstRender.current = false;
 
-      getMaterialListRequest();
       return getProductByIdRequest(pathname.split("/editar-produto/")[1]);
     }
+
+    getMaterialListRequest();
 
     return () => {
       getProductByIdClean();

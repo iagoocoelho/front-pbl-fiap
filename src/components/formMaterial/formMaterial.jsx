@@ -27,10 +27,10 @@ export const FormMaterial = ({
     if (editMode && isFirstRender.current) {
       isFirstRender.current = false;
 
-      getSupplierListRequest();
-
       return getMaterialByIdRequest(pathname.split("/editar-material/")[1]);
     }
+
+    getSupplierListRequest();
 
     return () => {
       getMaterialByIdClean();
