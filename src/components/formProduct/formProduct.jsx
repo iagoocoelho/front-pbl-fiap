@@ -45,7 +45,16 @@ export const FormProduct = ({
   ]);
 
   useEffect(() => {
-    if (!product.loading && product.success) setData(product.data);
+    if (!product.loading && product.success) {
+      let data = product.data.detalhes.map((x) => {
+        return {
+          idMaterial: x.material.id,
+          quantidade: x.quantidade,
+        };
+      });
+
+      setData(data);
+    }
   }, [product]);
 
   const [data, setData] = useState({
@@ -144,6 +153,7 @@ export const FormProduct = ({
                 name="custo"
                 placeholder="Informe o preço do produto"
                 decimalsLimit={2}
+                value={data.preco}
                 onValueChange={(value, name) => {
                   setData({ ...data, preco: value });
                 }}
