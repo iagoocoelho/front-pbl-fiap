@@ -76,7 +76,7 @@ export const FormMaterial = ({
               <Form.Label htmlFor="estado">Fornecedor</Form.Label>
               <Form.Select
                 id="fornecedor"
-                value={data.idFornecedor}
+                value={data.idFornecedor || data.fornecedor.id}
                 onChange={(e) => {
                   setData({
                     ...data,
@@ -138,6 +138,7 @@ export const FormMaterial = ({
                 className="form-control"
                 prefix="R$"
                 name="custo"
+                value={data.custo}
                 placeholder="Informe o custo do material"
                 decimalsLimit={2}
                 onValueChange={(value, name) => {
