@@ -104,15 +104,12 @@ export const FormProduct = ({
     let newData = data.detalhes.map((detalhe, i) => {
       if (i === index) {
         return {
-          idMaterial: !!idMaterial ? idMaterial : detalhe.id,
+          idMaterial: !!idMaterial ? idMaterial : detalhe.idMaterial,
           quantidade: !!quantidade ? quantidade : detalhe.quantidade,
         };
       }
 
-      return {
-        idMaterial: detalhe.id,
-        quantidade: detalhe.quantidade,
-      };
+      return { ...detalhe };
     });
 
     setData({ ...data, detalhes: newData });
