@@ -3,32 +3,11 @@ import { Form, Row, Col } from "react-bootstrap";
 import { MainContainer } from "components/container/mainContainer";
 import { connect } from "react-redux";
 import * as materialsActions from "store/materials/actions";
+import * as suppliersActions from "store/suppliers/actions";
 import { useLocation, redirect, useNavigate } from "react-router-dom";
 import CurrencyInput from "react-currency-input-field";
 import "./formMaterial.scss";
-
-let mockSupplier = [
-  {
-    id: 32132,
-    name: "Mercadinho Brutus",
-  },
-  {
-    id: 321,
-    name: "Testeee Nome",
-  },
-  {
-    id: 365,
-    name: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit, eaque.",
-  },
-  {
-    id: 3,
-    name: "Lorem ipsum dolor sit.",
-  },
-  {
-    id: 975,
-    name: "Lorem ipsum dolor sit amet consectetur.",
-  },
-];
+import { getSupplierListRequest } from "store/suppliers/sagas";
 
 export const FormMaterial = ({
   registerState,
@@ -38,6 +17,7 @@ export const FormMaterial = ({
   getMaterialByIdClean,
   editMode,
   material,
+  supplierList,
 }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -46,6 +26,9 @@ export const FormMaterial = ({
   useEffect(() => {
     if (editMode && isFirstRender.current) {
       isFirstRender.current = false;
+
+      getSupplierListRequest();
+
       return getMaterialByIdRequest(pathname.split("/editar-material/")[1]);
     }
 
@@ -102,9 +85,9 @@ export const FormMaterial = ({
                 }}
               >
                 <option value="">Selecione o fornecedor</option>
-                {mockSupplier.map((fornecedor) => (
+                {supplierList.map((fornecedor) => (
                   <option key={fornecedor.id} value={fornecedor.id}>
-                    {fornecedor.name}
+                    {fornecedor.nome}
                   </option>
                 ))}
               </Form.Select>
@@ -197,6 +180,7 @@ const mapStateToProps = (state) => {
   return {
     registerState: state.materials.register,
     material: state.materials.materialById,
+    supplierList: state.suppliers.list,
   };
 };
 
@@ -213,6 +197,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     getMaterialByIdClean: () => {
       dispatch(materialsActions.getMaterialByIdClean());
+    },
+    getSupplierListRequest: () => {
+      dispatch(suppliersActions.getSupplierListRequest());
     },
   };
 };
