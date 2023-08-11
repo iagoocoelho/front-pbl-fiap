@@ -45,7 +45,7 @@ export const FormMaterial = ({
     idFornecedor: null,
     descricao: "",
     unidade: "",
-    codigo_fabricante: "",
+    codigoFabricante: "",
     custo: 0,
   });
 
