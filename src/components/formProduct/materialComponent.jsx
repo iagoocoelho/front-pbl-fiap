@@ -23,11 +23,12 @@ export const MaterialComponent = ({
           }}
         >
           <option value="">Selecione o material...</option>
-          {materialList.map((material) => (
-            <option key={material.id} value={material.id}>
-              {material.descricao}
-            </option>
-          ))}
+          {materialList.success &&
+            materialList?.data.map((material) => (
+              <option key={material.id} value={material.id}>
+                {material.descricao}
+              </option>
+            ))}
         </Form.Select>
       </Form.Group>
 
