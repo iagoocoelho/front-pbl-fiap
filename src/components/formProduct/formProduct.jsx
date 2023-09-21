@@ -46,14 +46,15 @@ export const FormProduct = ({
 
   useEffect(() => {
     if (!product.loading && product.success) {
-      let data = product.data.detalhes.map((x) => {
+      let newDetalhes = product.data.detalhes.map((x) => {
         return {
           idMaterial: x.material.id,
           quantidade: x.quantidade,
         };
       });
 
-      setData(data);
+
+      setData({...product.data, detalhes: newDetalhes});
     }
   }, [product]);
 
