@@ -39,7 +39,7 @@ export function* editOrderRequest(action) {
   try {
     const { data } = yield call(
       Api.put,
-      `/material/${action.payload.id}`,
+      `/ordem-venda/${action.payload.id}`,
       action.payload.data
     );
     yield put(
@@ -62,7 +62,7 @@ export function* getOrderByIdRequest(action) {
   try {
     const { data } = yield call(
       Api.get,
-      `/material/${action.payload.id}`
+      `/ordem-venda/${action.payload.id}`
     );
 
     yield put(getOrderByIdSuccess(data));
@@ -73,7 +73,7 @@ export function* getOrderByIdRequest(action) {
 
 export function* getOrderListRequest() {
   try {
-    const { data } = yield call(Api.get, "/material");
+    const { data } = yield call(Api.get, "/ordem-venda");
 
     yield put(getOrderListSuccess(data));
   } catch (error) {
