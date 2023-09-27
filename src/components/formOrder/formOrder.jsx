@@ -20,6 +20,7 @@ export const FormOrder = ({
   getOrderByIdRequest,
   getOrderByIdClean,
   getProductListRequest,
+  getSupplierListRequest,
   editMode,
   viewMode,
   productList,
