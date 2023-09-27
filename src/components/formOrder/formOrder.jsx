@@ -31,10 +31,16 @@ export const FormOrder = ({
   const isFirstRender = useRef(true);
 
   useEffect(() => {
-    if ((editMode || viewMode) && isFirstRender.current) {
+    if (viewMode && isFirstRender.current) {
       isFirstRender.current = false;
 
-      return getOrderByIdRequest(pathname.split("/editar-pedido/" || "/visualizar-pedido/")[1]);
+      return getOrderByIdRequest(pathname.split("/visualizar-pedido/")[1]);
+    }
+
+    if (editMode && isFirstRender.current) {
+      isFirstRender.current = false;
+
+      return getOrderByIdRequest(pathname.split("/editar-pedido/")[1]);
     }
 
     getSupplierListRequest();
@@ -50,7 +56,7 @@ export const FormOrder = ({
     editMode,
     pathname,
     getProductListRequest,
-    viewMode
+    viewMode,
   ]);
 
   useEffect(() => {
