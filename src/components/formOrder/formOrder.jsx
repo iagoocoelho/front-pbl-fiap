@@ -157,7 +157,11 @@ export const FormOrder = ({
               <Form.Control as={Form.Label}>
                 <DatePicker
                   selected={startDate}
-                  onChange={(date) => setStartDate(date)}
+                  onChange={(date) => {
+                    debugger
+                    setStartDate(date);
+                  }}
+                  // onChange={(date) => setStartDate(date)}
                 />
               </Form.Control>
             </Form.Group>
@@ -261,28 +265,26 @@ export const FormOrder = ({
             </Form.Group>
           </Row>
 
-          <Row>
-            {data.detalhes.map((product, i) => {
-              return (
-                <ProductComponent
-                  index={i}
-                  productList={productList}
-                  product={product}
-                  onChangeProduct={onChangeProduct}
-                  removeProduct={removeProduct}
-                />
-              );
-            })}
+          {data.detalhes.map((product, i) => {
+            return (
+              <ProductComponent
+                index={i}
+                productList={productList}
+                product={product}
+                onChangeProduct={onChangeProduct}
+                removeProduct={removeProduct}
+              />
+            );
+          })}
 
-            <button
-              variant="primary"
-              className="btn-blue me-4"
-              type="button"
-              onClick={newProduct}
-            >
-              Adicionar Produto
-            </button>
-          </Row>
+          <button
+            variant="primary"
+            className="btn-blue me-4"
+            type="button"
+            onClick={newProduct}
+          >
+            Adicionar Produto
+          </button>
 
           <Row>
             <Col className="text-sm-center py-4">

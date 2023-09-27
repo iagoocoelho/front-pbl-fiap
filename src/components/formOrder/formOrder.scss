@@ -1,12 +1,17 @@
-.form-order  {
+.form-order {
+  .react-datepicker-wrapper {
+    width: 100%;
 
-
-    .react-datepicker-wrapper {
-        width: 100%;
-        
-        .react-datepicker__input-container input {
-            border: none;
-            width: 100%;
-        }
+    .react-datepicker__input-container input {
+      border: none;
+      width: 100%;
     }
+  }
+
+  .remove {
+    border: none;
+    background: transparent;
+    color: red;
+    margin-top: 15px;
+  }
 }
