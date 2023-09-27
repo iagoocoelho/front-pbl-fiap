@@ -34,7 +34,7 @@ export const FormOrder = ({
     if ((editMode || viewMode) && isFirstRender.current) {
       isFirstRender.current = false;
 
-      return getOrderByIdRequest(pathname.split("/editar-pedido/")[1]);
+      return getOrderByIdRequest(pathname.split("/editar-pedido/" || "/visualizar-pedido/")[1]);
     }
 
     getSupplierListRequest();
