@@ -31,7 +31,7 @@ export const OrderList = ({ getOrderListRequest, ordersList }) => {
                     <td>
                       <button
                         className="btn-blue"
-                        onClick={() => navigate(`/editar-produto/${item.id}`)}
+                        onClick={() => navigate(`/editar-pedido/${item.id}`)}
                       >
                         Editar
                       </button>
