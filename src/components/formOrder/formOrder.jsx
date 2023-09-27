@@ -138,7 +138,7 @@ export const FormOrder = ({
               <Form.Label htmlFor="estado">Cliente</Form.Label>
               <Form.Select
                 id="cliente"
-                value={data.idCliente || data?.clienteFornecedor?.id}
+                value={viewMode ? data?.clienteFornecedor?.id : data.idCliente}
                 onChange={(e) => {
                   setData({
                     ...data,
