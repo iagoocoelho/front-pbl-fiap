@@ -82,7 +82,10 @@ export const FormOrder = ({
       return;
     }
 
-    registerOrderRequest(data, () => navigate("/listagem-pedidos"));
+    registerOrderRequest(
+      { ...data, dataEntrega: startDate.toISOString().split("T")[0] },
+      () => navigate("/listagem-pedidos")
+    );
   };
 
   const onChangeProduct = ({ idProduto, quantidade, index }) => {
@@ -158,10 +161,8 @@ export const FormOrder = ({
                 <DatePicker
                   selected={startDate}
                   onChange={(date) => {
-                    debugger
                     setStartDate(date);
                   }}
-                  // onChange={(date) => setStartDate(date)}
                 />
               </Form.Control>
             </Form.Group>
