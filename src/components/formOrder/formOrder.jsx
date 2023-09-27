@@ -134,7 +134,7 @@ export const FormOrder = ({
 
   const newProduct = () => {
     if (viewMode) return
-    
+
     let newList = data.detalhes;
 
     newList.push({
@@ -328,7 +328,7 @@ export const FormOrder = ({
                 variant="primary"
                 className="btn-blue me-4"
                 type="button"
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/lista-pedidos")}
               >
                 Voltar
               </button>
