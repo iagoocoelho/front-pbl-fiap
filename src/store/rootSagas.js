@@ -38,6 +38,15 @@ import {
 } from "./products/sagas";
 import { productsTypes } from "./products/types";
 
+// Order
+import {
+  registerOrderRequest,
+  getOrderListRequest,
+  getOrderByIdRequest,
+  editOrderRequest,
+} from "./orders/sagas";
+import { ordersTypes } from "./orders/types";
+
 export default function* rootSaga() {
   return yield all([
     // SUPPLIER
@@ -92,5 +101,11 @@ export default function* rootSaga() {
     takeLatest(productsTypes.EDIT_PRODUCT_REQUEST, editProductRequest),
     takeLatest(productsTypes.GET_PRODUCT_LIST_REQUEST, getProductListRequest),
     takeLatest(productsTypes.GET_PRODUCT_BY_ID_REQUEST, getProductByIdRequest),
+
+    // ORDERS
+    takeLatest(ordersTypes.REGISTER_ORDER_REQUEST, registerOrderRequest),
+    takeLatest(ordersTypes.EDIT_ORDER_REQUEST, editOrderRequest),
+    takeLatest(ordersTypes.GET_ORDER_LIST_REQUEST, getOrderListRequest),
+    takeLatest(ordersTypes.GET_ORDER_BY_ID_REQUEST, getOrderByIdRequest),
   ]);
 }

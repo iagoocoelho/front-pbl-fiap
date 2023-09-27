@@ -10,6 +10,7 @@ import SupplierList from "pages/supplierList/supplierList";
 import MaterialList from "pages/materialList/materialList";
 import CustomerList from "pages/customerList/customerList";
 import ProductList from "pages/productList/productList";
+import FormOrder from "components/formOrder/formOrder";
 
 const Routers = () => (
   <>
@@ -39,6 +40,8 @@ const Routers = () => (
       <Route path={"/editar-produto/:id"} element={<FormProduct editMode />} />
 
       <Route path={"/lista-pedidos"} element={<OrderList />} />
+      <Route path={"/cadastro-pedido"} element={<FormOrder />} />
+      <Route path={"/editar-pedido/:id"} element={<FormOrder editMode />} />
     </Routes>
     <Toast />
   </>

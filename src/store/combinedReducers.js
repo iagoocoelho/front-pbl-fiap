@@ -3,6 +3,7 @@ import suppliers from './suppliers';
 import customers from './customers';
 import materials from './materials';
 import products from './products';
+import orders from './orders';
 import toast from './toast';
 
 const appReducer = combineReducers({
@@ -10,6 +11,7 @@ const appReducer = combineReducers({
   customers,
   materials,
   products,
+  orders,
   toast,
 });
 

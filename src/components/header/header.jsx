@@ -17,14 +17,14 @@ export const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse className="justify-content-end text-center">
             <Nav activeKey={pathname}>
-              {/* <NavDropdown title="Pedidos" >
-                <NavDropdown.Item>
-                  <Nav.Link href="/cadastrar-pedido">Listagem de Pedidos</Nav.Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
+              <NavDropdown title="Pedidos" >
+                <Nav.Item>
+                  <Nav.Link href="/cadastro-pedido">Cadastrar Pedido</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
                   <Nav.Link href="/lista-pedidos">Listagem de Pedidos</Nav.Link>
-                </NavDropdown.Item>
-              </NavDropdown> */}
+                </Nav.Item>
+              </NavDropdown>
 
               <NavDropdown title="Fornecedor">
                 <Nav.Link href="/cadastro-fornecedor">
