@@ -9,6 +9,7 @@ export const ProductComponent = ({
   onChangeProduct,
   removeProduct,
   index,
+  viewMode,
 }) => {
   return (
     <Row>
@@ -20,6 +21,7 @@ export const ProductComponent = ({
           onChange={(e) => {
             onChangeProduct({ idProduto: +e.target.value, index });
           }}
+          disabled={viewMode}
         >
           <option value="">Selecione o produto...</option>
           {productList.success &&
@@ -42,6 +44,7 @@ export const ProductComponent = ({
           onValueChange={(value, name) => {
             onChangeProduct({ quantidade: value, index });
           }}
+          disabled={viewMode}
         />
       </Form.Group>
 
@@ -51,6 +54,7 @@ export const ProductComponent = ({
           onClick={() => removeProduct({ index })}
           className="remove"
           ria-label="Informações do pedido"
+          disabled={viewMode}
         >
           <AiFillCloseCircle size={"30px"} />
         </button>

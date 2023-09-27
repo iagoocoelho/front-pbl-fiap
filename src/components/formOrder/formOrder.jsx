@@ -78,6 +78,7 @@ export const FormOrder = ({
   const [startDate, setStartDate] = useState(new Date());
 
   const handleSubmit = (event) => {
+    if (viewMode) return
     event.preventDefault();
 
     if (editMode) {
@@ -147,6 +148,7 @@ export const FormOrder = ({
                     idCliente: +e.target.value,
                   });
                 }}
+                disabled={viewMode}
               >
                 <option value="">Selecione o cliente</option>
                 {supplierList.success &&
@@ -166,6 +168,7 @@ export const FormOrder = ({
                   onChange={(date) => {
                     setStartDate(date);
                   }}
+                  disabled={viewMode}
                 />
               </Form.Control>
             </Form.Group>
@@ -181,6 +184,7 @@ export const FormOrder = ({
                 onChange={(e) =>
                   setData({ ...data, logradouro: e.target.value })
                 }
+                disabled={viewMode}
               />
             </Form.Group>
 
@@ -198,6 +202,7 @@ export const FormOrder = ({
               <Form.Control
                 id="bairro"
                 placeholder="Bairro"
+                disabled={viewMode}
                 value={data.bairro}
                 onChange={(e) =>
                   setData({
@@ -215,6 +220,7 @@ export const FormOrder = ({
                 type="number"
                 placeholder="CEP"
                 value={data.cep}
+                disabled={viewMode}
                 onChange={(e) => {
                   if (e.target.value.length > 8) return;
 
@@ -280,6 +286,7 @@ export const FormOrder = ({
                 product={product}
                 onChangeProduct={onChangeProduct}
                 removeProduct={removeProduct}
+                viewMode={viewMode}
               />
             );
           })}
