@@ -14,6 +14,7 @@ import "./formOrder.scss";
 import ProductComponent from "./productComponent";
 
 export const FormOrder = ({
+  registerOrderRequest,
   registerState,
   editOrderRequest,
   getOrderByIdRequest,
@@ -32,7 +33,7 @@ export const FormOrder = ({
     if (editMode && isFirstRender.current) {
       isFirstRender.current = false;
 
-      return getOrderByIdRequest(pathname.split("/editar-material/")[1]);
+      return getOrderByIdRequest(pathname.split("/editar-pedido/")[1]);
     }
 
     getSupplierListRequest();
@@ -81,10 +82,7 @@ export const FormOrder = ({
       return;
     }
 
-    // registerOrderRequest(
-    //   { ...data, custo: +data.custo.replace(",", ".") },
-    //   () => navigate("/listagem-pedidos")
-    // );
+    registerOrderRequest(data, () => navigate("/listagem-pedidos"));
   };
 
   const onChangeProduct = ({ idProduto, quantidade, index }) => {
@@ -93,6 +91,7 @@ export const FormOrder = ({
         return {
           idProduto: !!idProduto ? idProduto : detalhe.idProduto,
           quantidade: !!quantidade ? quantidade : detalhe.quantidade,
+          desconto: 0,
         };
       }
 
@@ -106,6 +105,18 @@ export const FormOrder = ({
     if (data.detalhes.length === 1) return;
 
     let newList = data.detalhes.filter((detalhe, i) => i !== index);
+
+    setData({ ...data, detalhes: newList });
+  };
+
+  const newProduct = () => {
+    let newList = data.detalhes;
+
+    newList.push({
+      idProduto: null,
+      quantidade: "",
+      desconto: 0,
+    });
 
     setData({ ...data, detalhes: newList });
   };
@@ -262,6 +273,15 @@ export const FormOrder = ({
                 />
               );
             })}
+
+            <button
+              variant="primary"
+              className="btn-blue me-4"
+              type="button"
+              onClick={newProduct}
+            >
+              Adicionar Produto
+            </button>
           </Row>
 
           <Row>

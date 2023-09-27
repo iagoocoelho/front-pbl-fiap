@@ -13,7 +13,7 @@ export const ProductComponent = ({
   return (
     <Row>
       <Form.Group as={Col} className="mb-3 col-9 col-sm-9">
-        <Form.Label htmlFor="estado">Material {index + 1}</Form.Label>
+        <Form.Label htmlFor="estado">Produto {index + 1}</Form.Label>
         <Form.Select
           id="product"
           value={product.idProduto}
@@ -23,9 +23,9 @@ export const ProductComponent = ({
         >
           <option value="">Selecione o produto...</option>
           {productList.success &&
-            productList?.data.map((material) => (
-              <option key={material.id} value={material.id}>
-                {material.descricao}
+            productList?.data.map((product) => (
+              <option key={product.id} value={product.id}>
+                {product.descricao}
               </option>
             ))}
         </Form.Select>
