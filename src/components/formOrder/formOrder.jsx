@@ -21,6 +21,7 @@ export const FormOrder = ({
   getOrderByIdClean,
   getProductListRequest,
   editMode,
+  viewMode,
   productList,
   orders,
   supplierList,
@@ -137,7 +138,7 @@ export const FormOrder = ({
               <Form.Label htmlFor="estado">Cliente</Form.Label>
               <Form.Select
                 id="cliente"
-                value={data.idCliente || data?.fornecedor?.id}
+                value={data.idCliente || data?.clienteFornecedor?.id}
                 onChange={(e) => {
                   setData({
                     ...data,
@@ -234,6 +235,7 @@ export const FormOrder = ({
                     estado: e.target.value,
                   });
                 }}
+                disabled={viewMode}
               >
                 <option value="">Selecione o estado</option>
                 {UF.map((uf) => (
@@ -255,6 +257,8 @@ export const FormOrder = ({
                   as="textarea"
                   placeholder="Informações adicionais"
                   style={{ height: "100px" }}
+                  value={data.informacoesAdicionais}
+                  disabled={viewMode}
                   onChange={(e) => {
                     setData({
                       ...data,
@@ -302,7 +306,7 @@ export const FormOrder = ({
                 variant="primary"
                 className="btn-green"
                 type="submit"
-                disabled={registerState.loading}
+                disabled={registerState.loading || viewMode}
               >
                 {registerState.loading ? "Enviando..." : "Enviar"}
               </button>

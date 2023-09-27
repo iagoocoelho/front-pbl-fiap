@@ -16,7 +16,7 @@ export const ProductComponent = ({
         <Form.Label htmlFor="estado">Produto {index + 1}</Form.Label>
         <Form.Select
           id="product"
-          value={product.idProduto}
+          value={product.idProduto || product?.produto?.id}
           onChange={(e) => {
             onChangeProduct({ idProduto: +e.target.value, index });
           }}
