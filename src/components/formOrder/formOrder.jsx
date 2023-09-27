@@ -6,7 +6,6 @@ import * as suppliersActions from "store/suppliers/actions";
 import * as ordersActions from "store/orders/actions";
 import * as productsActions from "store/products/actions";
 import { useLocation, useNavigate } from "react-router-dom";
-import { getSupplierListRequest } from "store/suppliers/sagas";
 import DatePicker from "react-datepicker";
 import { UF } from "utils/variables";
 
@@ -32,7 +31,7 @@ export const FormOrder = ({
   const isFirstRender = useRef(true);
 
   useEffect(() => {
-    if (editMode && isFirstRender.current) {
+    if ((editMode || viewMode) && isFirstRender.current) {
       isFirstRender.current = false;
 
       return getOrderByIdRequest(pathname.split("/editar-pedido/")[1]);
@@ -51,6 +50,7 @@ export const FormOrder = ({
     editMode,
     pathname,
     getProductListRequest,
+    viewMode
   ]);
 
   useEffect(() => {
@@ -78,7 +78,7 @@ export const FormOrder = ({
   const [startDate, setStartDate] = useState(new Date());
 
   const handleSubmit = (event) => {
-    if (viewMode) return
+    if (viewMode) return;
     event.preventDefault();
 
     if (editMode) {
@@ -193,6 +193,7 @@ export const FormOrder = ({
               <Form.Control
                 id="numero"
                 value={data.numero}
+                disabled={viewMode}
                 onChange={(e) => setData({ ...data, numero: e.target.value })}
               />
             </Form.Group>
