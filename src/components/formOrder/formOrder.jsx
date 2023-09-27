@@ -60,7 +60,17 @@ export const FormOrder = ({
   ]);
 
   useEffect(() => {
-    if (!orders.loading && orders.success) setData(orders.data);
+    if (!orders.loading && orders.success) {
+      setStartDate(
+        new Date(
+          orders.data.dataEntrega.replace(
+            orders.data.dataEntrega.split("-")[2],
+            +orders.data.dataEntrega.split("-")[2] + 1
+          )
+        )
+      );
+      setData(orders.data);
+    }
   }, [orders]);
 
   const [data, setData] = useState({
@@ -123,6 +133,8 @@ export const FormOrder = ({
   };
 
   const newProduct = () => {
+    if (viewMode) return
+    
     let newList = data.detalhes;
 
     newList.push({
@@ -138,7 +150,9 @@ export const FormOrder = ({
     <MainContainer className="form-order">
       <div>
         <div className="col py-4 title">
-          <h3 className="p-2">{editMode ? "Editar" : "Cadastrar"} Pedido</h3>
+          <h3 className="p-2">
+            {editMode ? "Editar" : viewMode ? "Visualizar" : "Cadastrar"} Pedido
+          </h3>
         </div>
 
         <Form onSubmit={handleSubmit}>
@@ -168,7 +182,7 @@ export const FormOrder = ({
 
             <Form.Group className="mb-3 col-4 col-sm-4">
               <Form.Label htmlFor="estado">Data de Entrega</Form.Label>
-              <Form.Control as={Form.Label}>
+              <Form.Control as={Form.Label} disabled={viewMode}>
                 <DatePicker
                   selected={startDate}
                   onChange={(date) => {
@@ -303,6 +317,7 @@ export const FormOrder = ({
             className="btn-blue me-4"
             type="button"
             onClick={newProduct}
+            disabled={viewMode}
           >
             Adicionar Produto
           </button>
