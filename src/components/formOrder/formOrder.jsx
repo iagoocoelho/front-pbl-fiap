@@ -56,7 +56,7 @@ export const FormOrder = ({
   }, [orders]);
 
   const [data, setData] = useState({
-    idCliente: 1,
+    idCliente: 0,
     dataEntrega: "",
     logradouro: "",
     numero: "",
