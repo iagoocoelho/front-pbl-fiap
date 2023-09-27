@@ -42,6 +42,7 @@ const Routers = () => (
       <Route path={"/lista-pedidos"} element={<OrderList />} />
       <Route path={"/cadastro-pedido"} element={<FormOrder />} />
       <Route path={"/editar-pedido/:id"} element={<FormOrder editMode />} />
+      <Route path={"/visualizar-pedido/:id"} element={<FormOrder viewMode />} />
     </Routes>
     <Toast />
   </>

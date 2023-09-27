@@ -47,6 +47,7 @@ export const FormOrder = ({
   }, [
     getOrderByIdRequest,
     getOrderByIdClean,
+    getSupplierListRequest,
     editMode,
     pathname,
     getProductListRequest,
@@ -139,7 +140,7 @@ export const FormOrder = ({
               <Form.Label htmlFor="estado">Cliente</Form.Label>
               <Form.Select
                 id="cliente"
-                value={viewMode ? data?.clienteFornecedor?.id : data.idCliente}
+                value={data.idCliente || data?.clienteFornecedor?.id}
                 onChange={(e) => {
                   setData({
                     ...data,
