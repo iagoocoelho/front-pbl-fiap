@@ -98,12 +98,15 @@ export const Header = ({ auth_state }) => {
         expand="lg"
         className="shadow-sm p-0 navbar navbar-expand-lg navbar-light d-flex flex-column"
       >
-        <div className="p-4">
+        <div className="p-4 w-100">
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse className="text-center">
-            <Nav activeKey={pathname}>
+            <Nav activeKey={pathname} className="w-100 justify-content-end">
               {allowedNavBars}
-              <Button>Deslogar</Button>
+
+              <div className="btn-container">
+                <Button>Deslogar</Button>
+              </div>
             </Nav>
           </Navbar.Collapse>
         </div>
