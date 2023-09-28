@@ -5,8 +5,10 @@ import materials from './materials';
 import products from './products';
 import orders from './orders';
 import toast from './toast';
+import auth from './auth';
 
 const appReducer = combineReducers({
+  auth,
   suppliers,
   customers,
   materials,

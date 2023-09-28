@@ -1,10 +1,3 @@
-export const ORDER_STATUS = {
-  AGUARDANDO: 0,
-  PRODUCAO: 1,
-  ENTREGUE: 2,
-  NOVO: 4,
-};
-
 export const UF = [
   { nome: "Acre", sigla: "AC" },
   { nome: "Alagoas", sigla: "AL" },
@@ -34,3 +27,25 @@ export const UF = [
   { nome: "Sergipe", sigla: "SE" },
   { nome: "Tocantins", sigla: "TO" },
 ];
+
+export const OrderStatus = {
+  AGUARDANDO_PRODUCAO: "Aguardando",
+  EM_PRODUCAO: "Em andamento",
+  FINALIZADO: "Finalizado",
+  ENTREGUE: "Entregue",
+};
+
+export const handleStatusOrderColor = (status) => {
+  switch (status) {
+    case "AGUARDANDO_PRODUCAO":
+      return "warning";
+    case "EM_PRODUCAO":
+      return "primary";
+    case "FINALIZADO":
+      return "info";
+    case "ENTREGUE":
+      return "success";
+    default:
+      return;
+  }
+};

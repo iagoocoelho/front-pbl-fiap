@@ -1,51 +1,57 @@
-import { Routes, Route } from "react-router-dom";
-import Home from "pages/home/home";
 import Toast from "components/toast/toast";
-import FormSupplier from "components/formSupplier/formSupplier";
-import OrderList from "pages/orderList/orderList";
-import FormCustomer from "components/formCustomer/formCustomer";
-import FormMaterial from "components/formMaterial/formMaterial";
-import FormProduct from "components/formProduct/formProduct";
-import SupplierList from "pages/supplierList/supplierList";
-import MaterialList from "pages/materialList/materialList";
-import CustomerList from "pages/customerList/customerList";
-import ProductList from "pages/productList/productList";
-import FormOrder from "components/formOrder/formOrder";
+import * as authActions from "store/auth/actions";
+import Header from "components/header/header";
+import { connect } from "react-redux";
+import Login from "pages/login/login";
+import { useEffect, useRef } from "react";
+import PrivateRoutes from "./privateRoutes";
+import { useNavigate } from "react-router-dom";
 
-const Routers = () => (
-  <>
-    <Routes>
-      <Route path={"/"} element={<Home />} />
+const Routers = ({ verifyTokenRequest, auth_token }) => {
+  const isFirstRender = useRef(true);
+  const navigate = useNavigate("/");
 
-      <Route path={"/listagem-fornecedor"} element={<SupplierList />} />
-      <Route path={"/cadastro-fornecedor"} element={<FormSupplier />} />
-      <Route
-        path={"/editar-fornecedor/:id"}
-        element={<FormSupplier editMode />}
-      />
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
 
-      <Route path={"/listagem-cliente"} element={<CustomerList />} />
-      <Route path={"/cadastro-cliente"} element={<FormCustomer />} />
-      <Route path={"/editar-cliente/:id"} element={<FormCustomer editMode />} />
+      if (auth_token) {
+        verifyTokenRequest();
+      } else {
+        navigate("/");
+      }
+    }
+  }, [auth_token, verifyTokenRequest, navigate]);
 
-      <Route path={"/listagem-material"} element={<MaterialList />} />
-      <Route path={"/cadastro-material"} element={<FormMaterial />} />
-      <Route
-        path={"/editar-material/:id"}
-        element={<FormMaterial editMode />}
-      />
+  return (
+    <>
+      {auth_token ? (
+        <>
+          <Header />
 
-      <Route path={"/listagem-produto"} element={<ProductList />} />
-      <Route path={"/cadastro-produto"} element={<FormProduct />} />
-      <Route path={"/editar-produto/:id"} element={<FormProduct editMode />} />
+          <PrivateRoutes />
+        </>
+      ) : (
+        <Login />
+      )}
+      <Toast />
+    </>
+  );
+};
 
-      <Route path={"/lista-pedidos"} element={<OrderList />} />
-      <Route path={"/cadastro-pedido"} element={<FormOrder />} />
-      <Route path={"/editar-pedido/:id"} element={<FormOrder editMode />} />
-      <Route path={"/visualizar-pedido/:id"} element={<FormOrder viewMode />} />
-    </Routes>
-    <Toast />
-  </>
-);
+const mapStateToProps = (state) => {
+  return {
+    auth_token: state.auth.data?.token,
+    auth_state: state.auth,
+  };
+};
 
-export default Routers;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    verifyTokenRequest: () => {
+      dispatch(authActions.verifyTokenRequest());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Routers);

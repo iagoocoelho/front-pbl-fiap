@@ -14,4 +14,30 @@
     color: red;
     margin-top: 15px;
   }
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .status {
+      display: block;
+      font-size: 20px;
+      margin-right: 50px;
+    }
+  }
+
+  .btn-status {
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 2rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    text-decoration: none;
+  }
+
+  .container-btn {
+    display: flex;
+    justify-content: center;
+  }
 }

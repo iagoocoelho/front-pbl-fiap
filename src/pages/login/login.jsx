@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { MainContainer } from "components/container/mainContainer";
 import { Form, Row, Col } from "react-bootstrap";
+import { connect } from "react-redux";
+import * as authActions from "store/auth/actions";
 import "./login.scss";
 
-export const Login = () => {
+export const Login = ({ auth_state, authRequest }) => {
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -11,6 +13,10 @@ export const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (!data.password || !data.username) return;
+
+    authRequest(data);
   };
 
   return (
@@ -47,8 +53,7 @@ export const Login = () => {
               </button> */}
 
             <button variant="primary" className="btn-green" type="submit">
-              {/* {registerState.loading ? "Enviando..." : "Enviar"} */}
-              Prosseguir
+              {auth_state.loading ? "Carregando..." : "Acessar"}
             </button>
           </Col>
         </Row>
@@ -57,4 +62,22 @@ export const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    auth_token: state.auth.data?.token,
+    auth_state: state.auth,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    authRequest: (data) => {
+      dispatch(authActions.authRequest(data));
+    },
+    verifyTokenRequest: () => {
+      dispatch(authActions.verifyTokenRequest());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

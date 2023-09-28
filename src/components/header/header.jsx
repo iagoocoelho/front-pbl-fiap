@@ -1,10 +1,96 @@
 import React from "react";
-import { Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { Nav, Navbar, Button } from "react-bootstrap";
+import { connect } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./header.scss";
+import { useEffect } from "react";
 
-export const Header = () => {
+const privateHeaders = [
+  {
+    lista_fornecedor: (
+      <Nav.Link href="/listagem-fornecedor">Listagem de Fornecedores</Nav.Link>
+    ),
+  },
+  {
+    edit_fornecedor: (
+      <Nav.Link href="/cadastro-fornecedor">Cadastrar Fornecedor</Nav.Link>
+    ),
+  },
+  {
+    lista_cliente: (
+      <Nav.Link href="/listagem-cliente">Listagem de Clientes</Nav.Link>
+    ),
+  },
+  {
+    edit_cliente: (
+      <>
+        <Nav.Link href="/cadastro-cliente">Cadastrar Clientes</Nav.Link>
+      </>
+    ),
+  },
+  {
+    lista_material: (
+      <Nav.Link href="/listagem-material">Listagem de Materiais</Nav.Link>
+    ),
+  },
+  {
+    edit_material: (
+      <Nav.Link href="/cadastro-material">Cadastrar Material</Nav.Link>
+    ),
+  },
+  {
+    lista_produto: (
+      <Nav.Link href="/listagem-produto">Listagem de Produtos</Nav.Link>
+    ),
+  },
+  {
+    edit_produto: (
+      <Nav.Link href="/cadastro-produto">Cadastrar Produto</Nav.Link>
+    ),
+  },
+  {
+    lista_pedido: (
+      <Nav.Item>
+        <Nav.Link href="/lista-pedidos">Listagem de Pedidos</Nav.Link>
+      </Nav.Item>
+    ),
+  },
+  {
+    edit_pedido: (
+      <>
+        <Nav.Item>
+          <Nav.Link href="/cadastro-pedido">Cadastrar Pedido</Nav.Link>
+        </Nav.Item>
+      </>
+    ),
+  },
+];
+
+export const Header = ({ auth_state }) => {
   const { pathname } = useLocation();
+  const navigate = useNavigate("/");
+
+  const allowedNavBars = privateHeaders
+    .map((route) => {
+      let auth_perm = auth_state.data.permissoes.find((alo) => {
+        return Object.keys(route).pop() === Object.keys(alo).pop();
+      });
+
+      if (auth_perm[Object.keys(route).pop()]) {
+        return route[Object.keys(route)];
+      } else {
+        return false;
+      }
+    })
+    .filter((allowed) => allowed);
+
+  useEffect(() => {
+    if (pathname) {
+      let allowedPaths = allowedNavBars.find((x) => x.props.href === pathname);
+
+      if (!allowedPaths) navigate("/");
+    }
+  }, [pathname, allowedNavBars, navigate]);
 
   return (
     <>
@@ -12,61 +98,24 @@ export const Header = () => {
         expand="lg"
         className="shadow-sm p-0 navbar navbar-expand-lg navbar-light d-flex flex-column"
       >
-        <Container className="p-4">
-          <Navbar.Brand href="#"></Navbar.Brand>
+        <div className="p-4">
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse className="justify-content-end text-center">
+          <Navbar.Collapse className="text-center">
             <Nav activeKey={pathname}>
-              <NavDropdown title="Pedidos" >
-                <Nav.Item>
-                  <Nav.Link href="/cadastro-pedido">Cadastrar Pedido</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link href="/lista-pedidos">Listagem de Pedidos</Nav.Link>
-                </Nav.Item>
-              </NavDropdown>
-
-              <NavDropdown title="Fornecedor">
-                <Nav.Link href="/cadastro-fornecedor">
-                  Cadastrar Fornecedor
-                </Nav.Link>
-
-                <Nav.Link href="/listagem-fornecedor">
-                  Listagem de Fornecedores
-                </Nav.Link>
-              </NavDropdown>
-
-              <NavDropdown title="Cliente">
-                <Nav.Link href="/cadastro-cliente">Cadastrar Clientes</Nav.Link>
-
-                <Nav.Link href="/listagem-cliente">
-                  Listagem de Clientes
-                </Nav.Link>
-              </NavDropdown>
-
-              <NavDropdown title="Material">
-                <Nav.Link href="/cadastro-material">
-                  Cadastrar Material
-                </Nav.Link>
-
-                <Nav.Link href="/listagem-material">
-                  Listagem de Materiais
-                </Nav.Link>
-              </NavDropdown>
-
-              <NavDropdown title="Produto">
-                <Nav.Link href="/cadastro-produto">Cadastrar Produto</Nav.Link>
-
-                <Nav.Link href="/listagem-produto">
-                  Listagem de Produtos
-                </Nav.Link>
-              </NavDropdown>
+              {allowedNavBars}
+              <Button>Deslogar</Button>
             </Nav>
           </Navbar.Collapse>
-        </Container>
+        </div>
       </Navbar>
     </>
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    auth_state: state.auth,
+  };
+};
+
+export default connect(mapStateToProps, null)(Header);
