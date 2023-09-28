@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const Routers = ({ verifyTokenRequest, auth_token }) => {
   const isFirstRender = useRef(true);
-  const navigate = useNavigate("/");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isFirstRender.current) {

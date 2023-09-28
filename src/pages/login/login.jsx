@@ -29,6 +29,7 @@ export const Login = ({ auth_state, authRequest }) => {
       <Form onSubmit={handleSubmit}>
         <Row className="mb-3 justify-content-md-center">
           <Form.Group as={Col} className="mb-3 col-4" controlId="username">
+            <Form.Label htmlFor="username">Usuário</Form.Label>
             <Form.Control
               placeholder="Usuário"
               onChange={(e) => setData({ ...data, username: e.target.value })}
@@ -37,7 +38,8 @@ export const Login = ({ auth_state, authRequest }) => {
         </Row>
 
         <Row className="mb-3 justify-content-md-center">
-          <Form.Group as={Col} className="mb-3 col-4" controlId="unit">
+          <Form.Group as={Col} className="mb-3 col-4" controlId="password">
+            <Form.Label htmlFor="password">Senha</Form.Label>
             <Form.Control
               type="password"
               placeholder="Senha"
@@ -48,10 +50,6 @@ export const Login = ({ auth_state, authRequest }) => {
 
         <Row>
           <Col className="text-sm-center py-4">
-            {/* <button variant="primary" className="btn-red mx-4" type="button">
-                Cancelar
-              </button> */}
-
             <button variant="primary" className="btn-green" type="submit">
               {auth_state.loading ? "Carregando..." : "Acessar"}
             </button>

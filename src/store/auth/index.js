@@ -37,6 +37,11 @@ const reducer = (state = INITIAL_STATE, action) => {
         error: true,
       };
 
+    case authTypes.AUTH_CLEAR:
+      return {
+        ...state.INITIAL_STATE,
+      };
+
     case authTypes.VERIFY_TOKEN_REQUEST:
       return {
         ...state,

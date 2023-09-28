@@ -35,6 +35,40 @@ export const OrderStatus = {
   ENTREGUE: "Entregue",
 };
 
+export const PermissionsByProfile = {
+  ADMIN: [
+    "lista_fornecedor",
+    "edit_fornecedor",
+    "lista_cliente",
+    "edit_cliente",
+    "lista_material",
+    "edit_material",
+    "lista_produto",
+    "edit_produto",
+    "lista_pedido",
+    "edit_pedido",
+  ],
+  COMERCIAL: [
+    "lista_fornecedor",
+    "edit_fornecedor",
+    "lista_cliente",
+    "edit_cliente",
+    "lista_material",
+    "edit_material",
+    "lista_produto",
+    "edit_produto",
+    "lista_pedido",
+  ],
+  FABRICA: [
+    "lista_fornecedor",
+    "lista_cliente",
+    "lista_material",
+    "lista_produto",
+    "lista_pedido",
+    "edit_pedido",
+  ],
+};
+
 export const handleStatusOrderColor = (status) => {
   switch (status) {
     case "AGUARDANDO_PRODUCAO":

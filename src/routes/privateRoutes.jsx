@@ -11,85 +11,139 @@ import CustomerList from "pages/customerList/customerList";
 import ProductList from "pages/productList/productList";
 import FormOrder from "components/formOrder/formOrder";
 import { connect } from "react-redux";
+import { PermissionsByProfile } from "utils/variables";
+import { Fragment } from "react";
 
 const privateRoutes = [
   {
     lista_fornecedor: (
-      <Route path={"/listagem-fornecedor"} element={<SupplierList />} />
+      <Route
+        key="lista_fornecedor"
+        path={"/listagem-fornecedor"}
+        element={<SupplierList />}
+      />
     ),
   },
   {
     edit_fornecedor: (
-      <>
-        <Route path={"/cadastro-fornecedor"} element={<FormSupplier />} />
+      <Fragment key="fornecedor">
         <Route
+          key="cadastro_fornecedor"
+          path={"/cadastro-fornecedor"}
+          element={<FormSupplier />}
+        />
+        <Route
+          key="edit_fornecedor"
           path={"/editar-fornecedor/:id"}
           element={<FormSupplier editMode />}
         />
-      </>
+      </Fragment>
     ),
   },
   {
     lista_cliente: (
-      <Route path={"/listagem-cliente"} element={<CustomerList />} />
+      <Route
+        key="lista_cliente"
+        path={"/listagem-cliente"}
+        element={<CustomerList />}
+      />
     ),
   },
   {
     edit_cliente: (
-      <>
-        <Route path={"/cadastro-cliente"} element={<FormCustomer />} />
+      <Fragment key="cliente">
         <Route
+          key="cadastro_cliente"
+          path={"/cadastro-cliente"}
+          element={<FormCustomer />}
+        />
+        <Route
+          key="edit_cliente"
           path={"/editar-cliente/:id"}
           element={<FormCustomer editMode />}
         />
-      </>
+      </Fragment>
     ),
   },
   {
     lista_material: (
-      <Route path={"/listagem-material"} element={<MaterialList />} />
+      <Route
+        key="lista_material"
+        path={"/listagem-material"}
+        element={<MaterialList />}
+      />
     ),
   },
   {
     edit_material: (
-      <>
-        <Route path={"/cadastro-material"} element={<FormMaterial />} />
+      <Fragment key="material">
         <Route
+          key="cadastro_material"
+          path={"/cadastro-material"}
+          element={<FormMaterial />}
+        />
+        <Route
+          key="edit_material"
           path={"/editar-material/:id"}
           element={<FormMaterial editMode />}
         />
-      </>
+      </Fragment>
     ),
   },
   {
     lista_produto: (
-      <Route path={"/listagem-produto"} element={<ProductList />} />
+      <Route
+        key="lista_produto"
+        path={"/listagem-produto"}
+        element={<ProductList />}
+      />
     ),
   },
   {
     edit_produto: (
-      <>
-        <Route path={"/cadastro-produto"} element={<FormProduct />} />
+      <Fragment key="produto">
         <Route
+          key="cadastro_produto"
+          path={"/cadastro-produto"}
+          element={<FormProduct />}
+        />
+        <Route
+          key="edit_produto"
           path={"/editar-produto/:id"}
           element={<FormProduct editMode />}
         />
-      </>
+      </Fragment>
     ),
   },
   {
-    lista_pedido: <Route path={"/lista-pedidos"} element={<OrderList />} />,
+    lista_pedido: (
+      <Route
+        key="lista_pedido"
+        path={"/lista-pedidos"}
+        element={<OrderList />}
+      />
+    ),
   },
   {
     edit_pedido: (
-      <>
-        <Route path={"/cadastro-pedido"} element={<FormOrder />} />,
-        <Route path={"/editar-pedido/:id"} element={<FormOrder editMode />} />
+      <Fragment key="pedido">
         <Route
+          key="cadastro_pedido"
+          path={"/cadastro-pedido"}
+          element={<FormOrder />}
+        />
+        ,
+        <Route
+          key="edit_pedido"
+          path={"/editar-pedido/:id"}
+          element={<FormOrder editMode />}
+        />
+        <Route
+          key="view_pedido"
           path={"/visualizar-pedido/:id"}
           element={<FormOrder viewMode />}
         />
-      </>
+      </Fragment>
     ),
   },
 ];
@@ -97,15 +151,13 @@ const privateRoutes = [
 const PrivateRoute = ({ auth_state }) => {
   const allowedRoutes = privateRoutes
     .map((route) => {
-      let auth_perm = auth_state.data.permissoes.find((alo) => {
-        return Object.keys(route).pop() === Object.keys(alo).pop();
+      let hasPerm = PermissionsByProfile[auth_state.data.perfil].find((alo) => {
+        return Object.keys(route).pop() === alo;
       });
 
-      if (auth_perm[Object.keys(route).pop()]) {
-        return route[Object.keys(route)];
-      } else {
-        return false;
-      }
+      if (hasPerm) return route[Object.keys(route)];
+
+      return false;
     })
     .filter((allowed) => allowed);
 

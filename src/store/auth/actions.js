@@ -10,3 +10,5 @@ export const verifyTokenSuccess = (data) =>
   action(authTypes.VERIFY_TOKEN_SUCCESS, { data });
 export const verifyTokenFailure = (error) =>
   action(authTypes.VERIFY_TOKEN_FAILURE, { error });
+
+export const authLogout = () => action(authTypes.AUTH_CLEAR);
