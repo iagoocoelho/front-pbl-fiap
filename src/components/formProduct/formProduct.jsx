@@ -190,7 +190,7 @@ export const FormProduct = ({
                 variant="primary"
                 className="btn-blue me-4"
                 type="button"
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/listagem-produto")}
               >
                 Voltar
               </button>

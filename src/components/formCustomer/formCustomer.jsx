@@ -260,22 +260,10 @@ export const FormCustomer = ({
                 variant="primary"
                 className="btn-blue me-4"
                 type="button"
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/listagem-cliente")}
               >
                 Voltar
               </button>
-
-              {/* {editMode && (
-                <button
-                  variant="primary"
-                  className="btn-red me-4"
-                  type="button"
-                  onClick={handleDelete}
-                  disabled={deleteState.loading}
-                >
-                  {deleteState.loading ? "Excluindo..." : "Excluir"}
-                </button>
-              )} */}
 
               <button
                 variant="primary"

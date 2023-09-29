@@ -1,9 +1,8 @@
 import React from "react";
 import { Nav, Navbar, Button } from "react-bootstrap";
 import { connect } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./header.scss";
-import { useEffect } from "react";
 import { PermissionsByProfile } from "utils/variables";
 import * as authActions from "store/auth/actions";
 
@@ -83,12 +82,11 @@ const privateHeaders = [
 
 export const Header = ({ auth_state, authLogout }) => {
   const { pathname } = useLocation();
-  const navigate = useNavigate("/");
 
   const allowedNavBars = privateHeaders
     .map((route) => {
-      let hasPerm = PermissionsByProfile[auth_state.data.perfil].find((alo) => {
-        return Object.keys(route).pop() === alo;
+      let hasPerm = PermissionsByProfile[auth_state.data.perfil].find((x) => {
+        return Object.keys(route).pop() === x;
       });
 
       if (hasPerm) return route[Object.keys(route)];
@@ -96,14 +94,6 @@ export const Header = ({ auth_state, authLogout }) => {
       return false;
     })
     .filter((allowed) => allowed);
-
-  useEffect(() => {
-    if (pathname) {
-      let allowedPaths = allowedNavBars.find((x) => x.props.href === pathname);
-
-      if (!allowedPaths) navigate("/");
-    }
-  }, [pathname, allowedNavBars, navigate]);
 
   return (
     <>
