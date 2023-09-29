@@ -48,6 +48,7 @@ import {
   getOrderListRequest,
   getOrderByIdRequest,
   editOrderRequest,
+  updateOrderByIdRequest,
 } from "./orders/sagas";
 import { ordersTypes } from "./orders/types";
 
@@ -114,5 +115,6 @@ export default function* rootSaga() {
     takeLatest(ordersTypes.EDIT_ORDER_REQUEST, editOrderRequest),
     takeLatest(ordersTypes.GET_ORDER_LIST_REQUEST, getOrderListRequest),
     takeLatest(ordersTypes.GET_ORDER_BY_ID_REQUEST, getOrderByIdRequest),
+    takeLatest(ordersTypes.UPDATE_ORDER_BY_ID_REQUEST, updateOrderByIdRequest),
   ]);
 }

@@ -25,6 +25,7 @@ export const FormOrder = ({
   productList,
   orders,
   supplierList,
+  updateOrderByIdRequest,
 }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -148,6 +149,8 @@ export const FormOrder = ({
   };
 
   const handleStartStopProduction = () => {
+
+    updateOrderByIdRequest(data.id, data)
     // pegar status
     // enviar api
     // api -> get novamente pra att status
@@ -411,6 +414,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     getOrderByIdClean: () => {
       dispatch(ordersActions.getOrderByIdClean());
+    },
+    updateOrderByIdRequest: (id, data) => {
+      dispatch(ordersActions.updateOrderByIdRequest(id, data));
     },
     getSupplierListRequest: () => {
       dispatch(suppliersActions.getSupplierListRequest());

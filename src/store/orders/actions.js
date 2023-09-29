@@ -30,3 +30,10 @@ export const getOrderByIdFailure = (error) =>
   action(ordersTypes.GET_ORDER_BY_ID_FAILURE, { error });
 export const getOrderByIdClean = () =>
   action(ordersTypes.GET_ORDER_BY_ID_CLEAN);
+
+export const updateOrderByIdRequest = (id, data) =>
+  action(ordersTypes.UPDATE_ORDER_BY_ID_REQUEST, { id, data });
+export const updateOrderByIdSuccess = (data) =>
+  action(ordersTypes.UPDATE_ORDER_BY_ID_SUCCESS, { data });
+export const updateOrderByIdFailure = (error) =>
+  action(ordersTypes.UPDATE_ORDER_BY_ID_FAILURE, { error });

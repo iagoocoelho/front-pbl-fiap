@@ -9,6 +9,8 @@ import {
   getOrderByIdFailure,
   editOrderSuccess,
   editOrderFailure,
+  updateOrderByIdSuccess,
+  updateOrderByIdFailure,
 } from "./actions";
 import { showToastr } from "store/toast/actions";
 
@@ -70,6 +72,22 @@ export function* getOrderByIdRequest(action) {
     yield put(getOrderByIdFailure(error));
   }
 }
+
+export function* updateOrderByIdRequest(action) {
+  debugger
+  try {
+    const { data } = yield call(
+      Api.put,
+      `/ordem-venda/${action.payload.id}`,
+      action.payload.data
+    );
+
+    yield put(updateOrderByIdSuccess(data));
+  } catch (error) {
+    yield put(updateOrderByIdFailure(error));
+  }
+}
+
 
 export function* getOrderListRequest() {
   try {
