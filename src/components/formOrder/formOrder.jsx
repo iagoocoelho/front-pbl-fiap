@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Form, Row, Col, FloatingLabel } from "react-bootstrap";
+import { Form, Row, Col, FloatingLabel, Badge, Button } from "react-bootstrap";
 import { MainContainer } from "components/container/mainContainer";
 import { connect } from "react-redux";
 import * as suppliersActions from "store/suppliers/actions";
@@ -8,9 +8,9 @@ import * as productsActions from "store/products/actions";
 import { useLocation, useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import { UF } from "utils/variables";
-
-import "./formOrder.scss";
+import { OrderStatus, handleStatusOrderColor } from "utils/variables";
 import ProductComponent from "./productComponent";
+import "./formOrder.scss";
 
 export const FormOrder = ({
   registerOrderRequest,
@@ -75,6 +75,7 @@ export const FormOrder = ({
 
   const [data, setData] = useState({
     idCliente: 0,
+    status: "",
     dataEntrega: "",
     logradouro: "",
     numero: "",
@@ -133,7 +134,7 @@ export const FormOrder = ({
   };
 
   const newProduct = () => {
-    if (viewMode) return
+    if (viewMode) return;
 
     let newList = data.detalhes;
 
@@ -146,6 +147,12 @@ export const FormOrder = ({
     setData({ ...data, detalhes: newList });
   };
 
+  const handleStartStopProduction = () => {
+    // pegar status
+    // enviar api
+    // api -> get novamente pra att status
+  };
+
   return (
     <MainContainer className="form-order">
       <div>
@@ -153,6 +160,19 @@ export const FormOrder = ({
           <h3 className="p-2">
             {editMode ? "Editar" : viewMode ? "Visualizar" : "Cadastrar"} Pedido
           </h3>
+
+          <div>
+            <span>
+              <b>Status:</b>
+            </span>
+            <Badge
+              className="status"
+              text={`${data.status === "AGUARDANDO_PRODUCAO" ? "dark" : ""}`}
+              bg={`${handleStatusOrderColor(data.status)}`}
+            >
+              {OrderStatus[data.status]}
+            </Badge>
+          </div>
         </div>
 
         <Form onSubmit={handleSubmit}>
@@ -323,7 +343,7 @@ export const FormOrder = ({
           </button>
 
           <Row>
-            <Col className="text-sm-center py-4">
+            <Col className="text-sm-center py-4 container-btn">
               <button
                 variant="primary"
                 className="btn-blue me-4"
@@ -335,12 +355,32 @@ export const FormOrder = ({
 
               <button
                 variant="primary"
-                className="btn-green"
+                className="btn-green me-4"
                 type="submit"
                 disabled={registerState.loading || viewMode}
               >
                 {registerState.loading ? "Enviando..." : "Enviar"}
               </button>
+
+              {data.status !== "ENTREGUE" && (
+                <Button
+                  variant={`${
+                    data.status === "AGUARDANDO_PRODUCAO"
+                      ? "primary"
+                      : data.status === "EM_PRODUCAO"
+                      ? "info"
+                      : data.status === "FINALIZADO"
+                      ? "success"
+                      : ""
+                  }`}
+                  className="btn-status"
+                  onClick={handleStartStopProduction}
+                >
+                  {data.status === "AGUARDANDO_PRODUCAO" && "Iniciar Produção"}
+                  {data.status === "EM_PRODUCAO" && "Finalizar produção"}
+                  {data.status === "FINALIZADO" && "Pedido entregue"}
+                </Button>
+              )}
             </Col>
           </Row>
         </Form>

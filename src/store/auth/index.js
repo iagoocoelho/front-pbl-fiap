@@ -5,11 +5,6 @@ const INITIAL_STATE = {
   success: false,
   error: false,
   data: null,
-  tokenVerify: {
-    loading: false,
-    success: false,
-    error: false,
-  },
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -39,38 +34,7 @@ const reducer = (state = INITIAL_STATE, action) => {
 
     case authTypes.AUTH_CLEAR:
       return {
-        ...state.INITIAL_STATE,
-      };
-
-    case authTypes.VERIFY_TOKEN_REQUEST:
-      return {
-        ...state,
-        tokenVerify: {
-          ...state.tokenVerify,
-          loading: true,
-          success: false,
-          error: false,
-        },
-      };
-    case authTypes.VERIFY_TOKEN_SUCCESS:
-      return {
-        ...state,
-        tokenVerify: {
-          success: true,
-          loading: false,
-          error: false,
-        },
-      };
-    case authTypes.VERIFY_TOKEN_FAILURE:
-      return {
-        ...state,
-        tokenVerify: {
-          ...state.tokenVerify,
-          message: action.payload.error,
-          success: false,
-          loading: false,
-          error: true,
-        },
+        ...INITIAL_STATE,
       };
     default:
       return state;

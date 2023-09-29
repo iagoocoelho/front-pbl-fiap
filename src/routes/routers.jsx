@@ -1,5 +1,4 @@
 import Toast from "components/toast/toast";
-import * as authActions from "store/auth/actions";
 import Header from "components/header/header";
 import { connect } from "react-redux";
 import Login from "pages/login/login";
@@ -7,7 +6,7 @@ import { useEffect, useRef } from "react";
 import PrivateRoutes from "./privateRoutes";
 import { useNavigate } from "react-router-dom";
 
-const Routers = ({ verifyTokenRequest, auth_token }) => {
+const Routers = ({ auth_token }) => {
   const isFirstRender = useRef(true);
   const navigate = useNavigate();
 
@@ -19,7 +18,7 @@ const Routers = ({ verifyTokenRequest, auth_token }) => {
         navigate("/");
       }
     }
-  }, [auth_token, verifyTokenRequest, navigate]);
+  }, [auth_token, navigate]);
 
   return (
     <>

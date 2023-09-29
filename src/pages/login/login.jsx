@@ -28,7 +28,7 @@ export const Login = ({ auth_state, authRequest }) => {
 
       <Form onSubmit={handleSubmit}>
         <Row className="mb-3 justify-content-md-center">
-          <Form.Group as={Col} className="mb-3 col-4" controlId="username">
+          <Form.Group as={Col} className="mb-3 col-4">
             <Form.Label htmlFor="username">Usuário</Form.Label>
             <Form.Control
               placeholder="Usuário"
@@ -38,7 +38,7 @@ export const Login = ({ auth_state, authRequest }) => {
         </Row>
 
         <Row className="mb-3 justify-content-md-center">
-          <Form.Group as={Col} className="mb-3 col-4" controlId="password">
+          <Form.Group as={Col} className="mb-3 col-4">
             <Form.Label htmlFor="password">Senha</Form.Label>
             <Form.Control
               type="password"

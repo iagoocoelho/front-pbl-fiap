@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Table } from "react-bootstrap";
+import { Table, Badge } from "react-bootstrap";
 import * as ordersActions from "store/orders/actions";
 import { useNavigate } from "react-router-dom";
+import { OrderStatus, handleStatusOrderColor } from "utils/variables";
+import "./orderList.scss";
 
 export const OrderList = ({ getOrderListRequest, ordersList }) => {
   let navigate = useNavigate();
@@ -13,12 +15,13 @@ export const OrderList = ({ getOrderListRequest, ordersList }) => {
   return (
     <>
       {!ordersList.loading && ordersList.success && (
-        <Table>
+        <Table className="order-list">
           <thead>
             <tr>
-              <th>Fornecedor</th>
-              <th>Codigo do Fabricante</th>
-              <th>Descrição</th>
+              <th>Cliente</th>
+              <th>Data de Entrega</th>
+              <th>Status</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -29,9 +32,22 @@ export const OrderList = ({ getOrderListRequest, ordersList }) => {
                     <td>{item.clienteFornecedor.nome}</td>
                     <td>{item.dataEntrega}</td>
                     <td>
+                      <Badge
+                        className="status"
+                        text={`${
+                          item.status === "AGUARDANDO_PRODUCAO" ? "dark" : ""
+                        }`}
+                        bg={`${handleStatusOrderColor(item.status)}`}
+                      >
+                        {OrderStatus[item.status]}
+                      </Badge>
+                    </td>
+                    <td>
                       <button
                         className="btn-blue"
-                        onClick={() => navigate(`/visualizar-pedido/${item.id}`)}
+                        onClick={() =>
+                          navigate(`/visualizar-pedido/${item.id}`)
+                        }
                       >
                         Detalhes
                       </button>
