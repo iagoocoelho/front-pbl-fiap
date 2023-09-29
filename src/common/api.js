@@ -23,7 +23,7 @@ AuthApi.interceptors.response.use(
       store.dispatch(
         toast.showToastr({
           type: "danger",
-          message: error.response.message,
+          message: error.response,
           // message: "Acesso inválido! :(",
         })
       );
