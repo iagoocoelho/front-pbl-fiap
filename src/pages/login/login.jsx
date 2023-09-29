@@ -8,13 +8,13 @@ import "./login.scss";
 export const Login = ({ auth_state, authRequest }) => {
   const [data, setData] = useState({
     username: "",
-    password: "",
+    senha: "",
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (!data.password || !data.username) return;
+    if (!data.senha || !data.username) return;
 
     authRequest(data);
   };
@@ -39,11 +39,11 @@ export const Login = ({ auth_state, authRequest }) => {
 
         <Row className="mb-3 justify-content-md-center">
           <Form.Group as={Col} className="mb-3 col-4">
-            <Form.Label htmlFor="password">Senha</Form.Label>
+            <Form.Label htmlFor="senha">Senha</Form.Label>
             <Form.Control
-              type="password"
+              type="senha"
               placeholder="Senha"
-              onChange={(e) => setData({ ...data, password: e.target.value })}
+              onChange={(e) => setData({ ...data, senha: e.target.value })}
             />
           </Form.Group>
         </Row>
