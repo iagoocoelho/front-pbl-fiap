@@ -36,7 +36,7 @@ export const OrderStatus = {
 };
 
 export const PermissionsByProfile = {
-  ADMIN: [
+  GESTOR: [
     "lista_fornecedor",
     "edit_fornecedor",
     "lista_cliente",
