@@ -35,11 +35,11 @@ export const StartOrder = ({ registerState, registerReset }) => {
       </Row>
 
       <Row className="mb-3">
-        <Form.Group as={Col} className="mb-3 col-10 col-sm-10" controlId="unit">
+        <Form.Group as={Col} className="mb-3 col-10 col-sm-10">
           <Form.Control disabled placeholder="Produto" value={data.item_name} />
         </Form.Group>
 
-        <Form.Group as={Col} className="mb-3 col-2 col-sm-2" controlId="unit">
+        <Form.Group as={Col} className="mb-3 col-2 col-sm-2">
           <Form.Control
             disabled
             placeholder="Unidade"

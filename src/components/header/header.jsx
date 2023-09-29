@@ -4,83 +4,96 @@ import { connect } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./header.scss";
 import { useEffect } from "react";
+import { PermissionsByProfile } from "utils/variables";
+import * as authActions from "store/auth/actions";
 
 const privateHeaders = [
   {
     lista_fornecedor: (
-      <Nav.Link href="/listagem-fornecedor">Listagem de Fornecedores</Nav.Link>
+      <Nav.Link key="lista_fornecedor" href="/listagem-fornecedor">
+        Listagem de Fornecedores
+      </Nav.Link>
     ),
   },
   {
     edit_fornecedor: (
-      <Nav.Link href="/cadastro-fornecedor">Cadastrar Fornecedor</Nav.Link>
+      <Nav.Link key="edit_fornecedor" href="/cadastro-fornecedor">
+        Cadastrar Fornecedor
+      </Nav.Link>
     ),
   },
   {
     lista_cliente: (
-      <Nav.Link href="/listagem-cliente">Listagem de Clientes</Nav.Link>
+      <Nav.Link key="lista_cliente" href="/listagem-cliente">
+        Listagem de Clientes
+      </Nav.Link>
     ),
   },
   {
     edit_cliente: (
-      <>
-        <Nav.Link href="/cadastro-cliente">Cadastrar Clientes</Nav.Link>
-      </>
+      <Nav.Link key="edit_cliente" href="/cadastro-cliente">
+        Cadastrar Clientes
+      </Nav.Link>
     ),
   },
   {
     lista_material: (
-      <Nav.Link href="/listagem-material">Listagem de Materiais</Nav.Link>
+      <Nav.Link key="lista_material" href="/listagem-material">
+        Listagem de Materiais
+      </Nav.Link>
     ),
   },
   {
     edit_material: (
-      <Nav.Link href="/cadastro-material">Cadastrar Material</Nav.Link>
+      <Nav.Link key="edit_material" href="/cadastro-material">
+        Cadastrar Material
+      </Nav.Link>
     ),
   },
   {
     lista_produto: (
-      <Nav.Link href="/listagem-produto">Listagem de Produtos</Nav.Link>
+      <Nav.Link key="lista_produto" href="/listagem-produto">
+        Listagem de Produtos
+      </Nav.Link>
     ),
   },
   {
     edit_produto: (
-      <Nav.Link href="/cadastro-produto">Cadastrar Produto</Nav.Link>
+      <Nav.Link key="edit_produto" href="/cadastro-produto">
+        Cadastrar Produto
+      </Nav.Link>
     ),
   },
   {
     lista_pedido: (
-      <Nav.Item>
-        <Nav.Link href="/lista-pedidos">Listagem de Pedidos</Nav.Link>
-      </Nav.Item>
+      <Nav.Link key="lista_pedido" href="/lista-pedidos">
+        Listagem de Pedidos
+      </Nav.Link>
     ),
   },
   {
     edit_pedido: (
-      <>
-        <Nav.Item>
-          <Nav.Link href="/cadastro-pedido">Cadastrar Pedido</Nav.Link>
-        </Nav.Item>
-      </>
+      <Nav.Link key="edit_pedido" href="/cadastro-pedido">
+        Cadastrar Pedido
+      </Nav.Link>
     ),
   },
 ];
 
-export const Header = ({ auth_state }) => {
+
+export const Header = ({ auth_state, authLogout }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate("/");
 
   const allowedNavBars = privateHeaders
     .map((route) => {
-      let auth_perm = auth_state.data.permissoes.find((alo) => {
-        return Object.keys(route).pop() === Object.keys(alo).pop();
+      let hasPerm = PermissionsByProfile[auth_state.data.perfil].find((alo) => {
+        return Object.keys(route).pop() === alo;
       });
 
-      if (auth_perm[Object.keys(route).pop()]) {
-        return route[Object.keys(route)];
-      } else {
-        return false;
-      }
+      if (hasPerm) return route[Object.keys(route)];
+
+      return false;
     })
     .filter((allowed) => allowed);
 
@@ -101,11 +114,17 @@ export const Header = ({ auth_state }) => {
         <div className="p-4 w-100">
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse className="text-center">
-            <Nav activeKey={pathname} className="w-100 justify-content-end">
-              {allowedNavBars}
+            <Nav activeKey={pathname} className="w-100 justify-content-end align-items-center">
+              {allowedNavBars.map(x => x)}
 
               <div className="btn-container">
-                <Button>Deslogar</Button>
+                <Button
+                  onClick={() => {
+                    authLogout()
+                  }}
+                >
+                  Deslogar
+                </Button>
               </div>
             </Nav>
           </Navbar.Collapse>
@@ -121,4 +140,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(Header);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    authLogout: () => {
+      dispatch(authActions.authLogout());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

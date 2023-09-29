@@ -32,7 +32,7 @@ const Api = axios.create({
 
 Api.interceptors.request.use(async (config) => {
   const auth = store.getState().auth;
-  config.headers.Authorization = `Bearer ${auth.data?.access_token}`;
+  config.headers.Authorization = `Bearer ${auth.data?.token}`;
   return config;
 });
 

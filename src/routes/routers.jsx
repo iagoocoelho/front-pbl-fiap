@@ -15,9 +15,7 @@ const Routers = ({ verifyTokenRequest, auth_token }) => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
 
-      if (auth_token) {
-        verifyTokenRequest();
-      } else {
+      if (!auth_token) {
         navigate("/");
       }
     }
@@ -46,12 +44,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    verifyTokenRequest: () => {
-      dispatch(authActions.verifyTokenRequest());
-    },
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Routers);
+export default connect(mapStateToProps)(Routers);

@@ -164,7 +164,7 @@ const PrivateRoute = ({ auth_state }) => {
   return (
     <Routes>
       <Route path={"/"} element={<Home />} />
-      {allowedRoutes}
+      {allowedRoutes.map(x => x)}
     </Routes>
   );
 };

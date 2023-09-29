@@ -72,9 +72,6 @@ const mapDispatchToProps = (dispatch) => {
     authRequest: (data) => {
       dispatch(authActions.authRequest(data));
     },
-    verifyTokenRequest: () => {
-      dispatch(authActions.verifyTokenRequest());
-    },
   };
 };
 

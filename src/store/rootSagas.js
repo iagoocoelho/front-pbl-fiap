@@ -1,7 +1,7 @@
 import { all, takeLatest } from "redux-saga/effects";
 
 // Auth
-import { authRequest, verifyTokenRequest } from "./auth/sagas";
+import { authRequest } from "./auth/sagas";
 import { authTypes } from "./auth/types";
 
 // Fornecedores
@@ -55,7 +55,6 @@ export default function* rootSaga() {
   return yield all([
     // AUTH
     takeLatest(authTypes.AUTH_REQUEST, authRequest),
-    takeLatest(authTypes.VERIFY_TOKEN_REQUEST, verifyTokenRequest),
 
     // SUPPLIER
     takeLatest(
