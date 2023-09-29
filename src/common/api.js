@@ -23,8 +23,7 @@ AuthApi.interceptors.response.use(
       store.dispatch(
         toast.showToastr({
           type: "danger",
-          message: error.response,
-          // message: "Acesso inválido! :(",
+          message: "Usuário e/ou senha inválido! :(",
         })
       );
     } else {
