@@ -13,13 +13,6 @@ const AuthApi = axios.create({
 AuthApi.interceptors.response.use(
   async (response) => response,
   async (error) => {
-    store.dispatch(
-      toast.showToastr({
-        type: "danger",
-        message: "Login e/ou senha inválidos, Virilho :/",
-      })
-    );
-
     if (error.response.status === 500) {
       console.log("Ops, ocorreu um erro, tente novamente!");
     } else if (error.response.status === 404) {
