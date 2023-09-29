@@ -41,7 +41,7 @@ export const Login = ({ auth_state, authRequest }) => {
           <Form.Group as={Col} className="mb-3 col-4">
             <Form.Label htmlFor="senha">Senha</Form.Label>
             <Form.Control
-              type="senha"
+              type="password"
               placeholder="Senha"
               onChange={(e) => setData({ ...data, senha: e.target.value })}
             />
