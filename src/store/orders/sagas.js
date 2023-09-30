@@ -9,18 +9,14 @@ import {
   getOrderByIdFailure,
   editOrderSuccess,
   editOrderFailure,
-  updateOrderByIdSuccess,
+  getOrderByIdSuccess as updateGetById,
   updateOrderByIdFailure,
 } from "./actions";
 import { showToastr } from "store/toast/actions";
 
 export function* registerOrderRequest(action) {
   try {
-    const { data } = yield call(
-      Api.post,
-      "/ordem-venda",
-      action.payload.data
-    );
+    const { data } = yield call(Api.post, "/ordem-venda", action.payload.data);
     yield put(
       showToastr({ type: "success", message: "Cadastrado feito com sucesso!" })
     );
@@ -62,10 +58,7 @@ export function* editOrderRequest(action) {
 
 export function* getOrderByIdRequest(action) {
   try {
-    const { data } = yield call(
-      Api.get,
-      `/ordem-venda/${action.payload.id}`
-    );
+    const { data } = yield call(Api.get, `/ordem-venda/${action.payload.id}`);
 
     yield put(getOrderByIdSuccess(data));
   } catch (error) {
@@ -81,12 +74,11 @@ export function* updateOrderByIdRequest(action) {
       action.payload.data
     );
 
-    yield put(getOrderByIdRequest(data.id));
+    yield put(updateGetById(data.id));
   } catch (error) {
     yield put(updateOrderByIdFailure(error));
   }
 }
-
 
 export function* getOrderListRequest() {
   try {
