@@ -8,7 +8,11 @@ import * as productsActions from "store/products/actions";
 import { useLocation, useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import { UF } from "utils/variables";
-import { OrderStatus, handleStatusOrderColor } from "utils/variables";
+import {
+  OrderStatus,
+  handleStatusOrderColor,
+  OrderStatusId,
+} from "utils/variables";
 import ProductComponent from "./productComponent";
 import "./formOrder.scss";
 
@@ -148,11 +152,17 @@ export const FormOrder = ({
     setData({ ...data, detalhes: newList });
   };
 
-  const handleStartStopProduction = () => {
+  const changeToNextStatus = () => {
+    let indexCurrentStatus = Object.values(OrderStatusId).indexOf(data.status);
+    let nextStatus = OrderStatusId[indexCurrentStatus + 1 ]
 
+    return nextStatus
+  };
+
+  const handleStartStopProduction = () => {
     let newDetalhes = data.detalhes.map((x) => {
-      return { idProduto: x.produto.id, quantidade: x.quantidade, desconto: 0}
-    })
+      return { idProduto: x.produto.id, quantidade: x.quantidade, desconto: 0 };
+    });
 
     let newData = {
       idCliente: data.clienteFornecedor.id,
@@ -163,7 +173,7 @@ export const FormOrder = ({
       estado: data.estado,
       cep: data.cep,
       informacoesAdicionais: data.informacoesAdicionais,
-      status: data.status,
+      status: changeToNextStatus(),
       detalhes: newDetalhes,
     };
 

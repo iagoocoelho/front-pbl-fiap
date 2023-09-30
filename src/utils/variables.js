@@ -35,6 +35,13 @@ export const OrderStatus = {
   ENTREGUE: "Entregue",
 };
 
+export const OrderStatusId = {
+  0: "AGUARDANDO_PRODUCAO",
+  1: "EM_PRODUCAO",
+  2: "FINALIZADO",
+  3: "ENTREGUE",
+};
+
 export const PermissionsByProfile = {
   GESTOR: [
     "lista_fornecedor",

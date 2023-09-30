@@ -74,7 +74,6 @@ export function* getOrderByIdRequest(action) {
 }
 
 export function* updateOrderByIdRequest(action) {
-  debugger
   try {
     const { data } = yield call(
       Api.put,
@@ -82,7 +81,7 @@ export function* updateOrderByIdRequest(action) {
       action.payload.data
     );
 
-    yield put(updateOrderByIdSuccess(data));
+    yield put(getOrderByIdRequest(data.id));
   } catch (error) {
     yield put(updateOrderByIdFailure(error));
   }
