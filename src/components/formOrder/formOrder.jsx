@@ -400,7 +400,7 @@ export const FormOrder = ({
 
               {(auth_state.data.perfil !== "ADMINISTRATIVO" ||
                 data.status !== "ENTREGUE" ||
-                !data.status) && (
+                !!data.status) && (
                 <Button
                   variant={`${
                     data.status === "AGUARDANDO_PRODUCAO"
