@@ -75,6 +75,7 @@ export const PermissionsByProfile = {
     "cadastro_produto",
     "edit_produto",
     "lista_pedido",
+    "view_pedido",
   ],
   PRODUCAO: [
     "lista_fornecedor",

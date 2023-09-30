@@ -45,7 +45,6 @@ export const OrderList = ({ getOrderListRequest, ordersList, auth_state }) => {
                     <td>
                       <button
                         className="btn-blue"
-                        disabled={auth_state.data.perfil === 'ADMINISTRATIVO'}
                         onClick={() =>
                           navigate(`/visualizar-pedido/${item.id}`)
                         }
@@ -67,7 +66,6 @@ export const OrderList = ({ getOrderListRequest, ordersList, auth_state }) => {
 const mapStateToProps = (state) => {
   return {
     ordersList: state.orders.list,
-    auth_state: state.auth,
   };
 };
 

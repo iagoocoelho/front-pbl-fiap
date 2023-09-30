@@ -150,7 +150,7 @@ const privateRoutes = [
     ),
   },
   {
-    edit_pedido: (
+    view_pedido: (
       <Route
         key="view_pedido"
         path={"/visualizar-pedido/:id"}

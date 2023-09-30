@@ -30,6 +30,7 @@ export const FormOrder = ({
   orders,
   supplierList,
   updateOrderByIdRequest,
+  auth_state,
 }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -154,12 +155,14 @@ export const FormOrder = ({
 
   const changeToNextStatus = () => {
     let indexCurrentStatus = Object.values(OrderStatusId).indexOf(data.status);
-    let nextStatus = OrderStatusId[indexCurrentStatus + 1 ]
+    let nextStatus = OrderStatusId[indexCurrentStatus + 1];
 
-    return nextStatus
+    return nextStatus;
   };
 
   const handleStartStopProduction = () => {
+    if (auth_state.data.perfil === "ADMINISTRATIVO") return;
+
     let newDetalhes = data.detalhes.map((x) => {
       return { idProduto: x.produto.id, quantidade: x.quantidade, desconto: 0 };
     });
@@ -389,7 +392,8 @@ export const FormOrder = ({
                 {registerState.loading ? "Enviando..." : "Enviar"}
               </button>
 
-              {data.status !== "ENTREGUE" && (
+              {(auth_state.data.perfil === "ADMINISTRATIVO" ||
+                data.status !== "ENTREGUE") && (
                 <Button
                   variant={`${
                     data.status === "AGUARDANDO_PRODUCAO"
@@ -422,6 +426,7 @@ const mapStateToProps = (state) => {
     orders: state.orders.orderById,
     supplierList: state.suppliers.list,
     productList: state.products.list,
+    auth_state: state.auth,
   };
 };
 
