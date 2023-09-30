@@ -9,7 +9,7 @@ import {
   getOrderByIdFailure,
   editOrderSuccess,
   editOrderFailure,
-  getOrderByIdSuccess as updateGetById,
+  getOrderByIdRequest as updateGetById,
   updateOrderByIdFailure,
 } from "./actions";
 import { showToastr } from "store/toast/actions";
