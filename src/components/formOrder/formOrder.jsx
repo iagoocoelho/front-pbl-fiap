@@ -164,6 +164,11 @@ export const FormOrder = ({
     return nextStatus;
   };
 
+  console.log(
+    auth_state.data.perfil !== "ADMINISTRATIVO" ||
+      (data.status !== "ENTREGUE" && !data.status)
+  );
+
   const handleStartStopProduction = () => {
     if (auth_state.data.perfil === "ADMINISTRATIVO") return;
 
@@ -398,7 +403,7 @@ export const FormOrder = ({
                 {registerState.loading ? "Enviando..." : "Enviar"}
               </button>
 
-              {auth_state.data.perfil !== "ADMINISTRATIVO" ||
+              {auth_state.data.perfil === "ADMINISTRATIVO" ||
               (data.status !== "ENTREGUE" && !data.status) ? (
                 ""
               ) : (
