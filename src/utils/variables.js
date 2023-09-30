@@ -61,24 +61,28 @@ export const PermissionsByProfile = {
     "edit_pedido",
     "view_pedido",
   ],
-  COMERCIAL: [
+  ADMINISTRATIVO: [
     "lista_fornecedor",
     "edit_fornecedor",
+    "cadastro_fornecedor",
     "lista_cliente",
+    "cadastro_cliente",
     "edit_cliente",
     "lista_material",
+    "cadastro_material",
     "edit_material",
     "lista_produto",
+    "cadastro_produto",
     "edit_produto",
     "lista_pedido",
   ],
-  FABRICA: [
+  PRODUCAO: [
     "lista_fornecedor",
     "lista_cliente",
     "lista_material",
     "lista_produto",
     "lista_pedido",
-    "edit_pedido",
+    "view_pedido",
   ],
 };
 

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { OrderStatus, handleStatusOrderColor } from "utils/variables";
 import "./orderList.scss";
 
-export const OrderList = ({ getOrderListRequest, ordersList }) => {
+export const OrderList = ({ getOrderListRequest, ordersList, auth_state }) => {
   let navigate = useNavigate();
   useEffect(() => {
     getOrderListRequest();
@@ -45,6 +45,7 @@ export const OrderList = ({ getOrderListRequest, ordersList }) => {
                     <td>
                       <button
                         className="btn-blue"
+                        disabled={auth_state.data.perfil === 'ADMINISTRATIVO'}
                         onClick={() =>
                           navigate(`/visualizar-pedido/${item.id}`)
                         }
@@ -66,6 +67,7 @@ export const OrderList = ({ getOrderListRequest, ordersList }) => {
 const mapStateToProps = (state) => {
   return {
     ordersList: state.orders.list,
+    auth_state: state.auth,
   };
 };
 
