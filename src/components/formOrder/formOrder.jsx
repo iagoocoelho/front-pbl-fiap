@@ -398,9 +398,10 @@ export const FormOrder = ({
                 {registerState.loading ? "Enviando..." : "Enviar"}
               </button>
 
-              {(auth_state.data.perfil !== "ADMINISTRATIVO" ||
-                data.status !== "ENTREGUE" ||
-                !!data.status) && (
+              {auth_state.data.perfil !== "ADMINISTRATIVO" ||
+              (data.status !== "ENTREGUE" && !data.status) ? (
+                ""
+              ) : (
                 <Button
                   variant={`${
                     data.status === "AGUARDANDO_PRODUCAO"
