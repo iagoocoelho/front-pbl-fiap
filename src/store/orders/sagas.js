@@ -74,7 +74,7 @@ export function* updateOrderByIdRequest(action) {
       action.payload.data
     );
 
-    yield put(updateGetById(data.id));
+    yield put(updateGetById(action.payload.id));
   } catch (error) {
     yield put(updateOrderByIdFailure(error));
   }
