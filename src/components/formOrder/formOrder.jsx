@@ -81,7 +81,7 @@ export const FormOrder = ({
 
   const [data, setData] = useState({
     idCliente: 0,
-    status: "AGUARDANDO_PRODUCAO",
+    status: "",
     dataEntrega: "",
     logradouro: "",
     numero: "",
@@ -110,7 +110,11 @@ export const FormOrder = ({
     }
 
     registerOrderRequest(
-      { ...data, dataEntrega: startDate.toISOString().split("T")[0] },
+      {
+        ...data,
+        dataEntrega: startDate.toISOString().split("T")[0],
+        status: "AGUARDANDO_PRODUCAO",
+      },
       () => navigate("/listagem-pedidos")
     );
   };
@@ -191,18 +195,20 @@ export const FormOrder = ({
             {editMode ? "Editar" : viewMode ? "Visualizar" : "Cadastrar"} Pedido
           </h3>
 
-          <div>
-            <span>
-              <b>Status:</b>
-            </span>
-            <Badge
-              className="status"
-              text={`${data.status === "AGUARDANDO_PRODUCAO" ? "dark" : ""}`}
-              bg={`${handleStatusOrderColor(data.status)}`}
-            >
-              {OrderStatus[data.status]}
-            </Badge>
-          </div>
+          {data.status && (
+            <div>
+              <span>
+                <b>Status:</b>
+              </span>
+              <Badge
+                className="status"
+                text={`${data.status === "AGUARDANDO_PRODUCAO" ? "dark" : ""}`}
+                bg={`${handleStatusOrderColor(data.status)}`}
+              >
+                {OrderStatus[data.status]}
+              </Badge>
+            </div>
+          )}
         </div>
 
         <Form onSubmit={handleSubmit}>
@@ -393,7 +399,8 @@ export const FormOrder = ({
               </button>
 
               {(auth_state.data.perfil === "ADMINISTRATIVO" ||
-                data.status !== "ENTREGUE") && (
+                data.status !== "ENTREGUE" ||
+                !data.status) && (
                 <Button
                   variant={`${
                     data.status === "AGUARDANDO_PRODUCAO"
