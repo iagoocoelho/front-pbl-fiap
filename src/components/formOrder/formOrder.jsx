@@ -150,10 +150,24 @@ export const FormOrder = ({
 
   const handleStartStopProduction = () => {
 
-    updateOrderByIdRequest(data.id, data)
-    // pegar status
-    // enviar api
-    // api -> get novamente pra att status
+    let newDetalhes = data.detalhes.map((x) => {
+      return { idProduto: x.produto.id, quantidade: x.quantidade, desconto: 0}
+    })
+
+    let newData = {
+      idCliente: data.clienteFornecedor.id,
+      dataEntrega: data.dataEntrega,
+      logradouro: data.logradouro,
+      numero: data.numero,
+      bairro: data.bairro,
+      estado: data.estado,
+      cep: data.cep,
+      informacoesAdicionais: data.informacoesAdicionais,
+      status: data.status,
+      detalhes: newDetalhes,
+    };
+
+    updateOrderByIdRequest(data.id, newData);
   };
 
   return (
