@@ -4,7 +4,11 @@ import { Table } from "react-bootstrap";
 import * as materialsActions from "store/materials/actions";
 import { useNavigate } from "react-router-dom";
 
-export const MaterialList = ({ getMaterialListRequest, materialsList }) => {
+export const MaterialList = ({
+  getMaterialListRequest,
+  materialsList,
+  auth_state,
+}) => {
   let navigate = useNavigate();
   useEffect(() => {
     getMaterialListRequest();
@@ -33,7 +37,11 @@ export const MaterialList = ({ getMaterialListRequest, materialsList }) => {
                     <td>
                       <button
                         className="btn-blue"
-                        onClick={() => navigate(`/editar-material/${item.id}`)}
+                        onClick={() => {
+                          if (auth_state.data.perfil === "PRODUCAO") return;
+                          navigate(`/editar-material/${item.id}`);
+                        }}
+                        disabled={auth_state.data.perfil === "PRODUCAO"}
                       >
                         Editar
                       </button>
@@ -52,6 +60,7 @@ export const MaterialList = ({ getMaterialListRequest, materialsList }) => {
 const mapStateToProps = (state) => {
   return {
     materialsList: state.materials.list,
+    auth_state: state.auth,
   };
 };
 

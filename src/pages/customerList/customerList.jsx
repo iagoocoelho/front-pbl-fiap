@@ -4,7 +4,11 @@ import { Table } from "react-bootstrap";
 import * as customersActions from "store/customers/actions";
 import { useNavigate } from "react-router-dom";
 
-export const CustomerList = ({ getCustomerListRequest, customerList }) => {
+export const CustomerList = ({
+  getCustomerListRequest,
+  customerList,
+  auth_state,
+}) => {
   let navigate = useNavigate();
   useEffect(() => {
     getCustomerListRequest();
@@ -32,9 +36,11 @@ export const CustomerList = ({ getCustomerListRequest, customerList }) => {
                     <td>
                       <button
                         className="btn-blue"
-                        onClick={() =>
-                          navigate(`/editar-cliente/${item.id}`)
-                        }
+                        onClick={() => {
+                          if (auth_state.data.perfil === "PRODUCAO") return;
+                          navigate(`/editar-cliente/${item.id}`);
+                        }}
+                        disabled={auth_state.data.perfil === "PRODUCAO"}
                       >
                         Editar
                       </button>
@@ -53,6 +59,7 @@ export const CustomerList = ({ getCustomerListRequest, customerList }) => {
 const mapStateToProps = (state) => {
   return {
     customerList: state.customers.list,
+    auth_state: state.auth,
   };
 };
 

@@ -4,7 +4,11 @@ import { Table } from "react-bootstrap";
 import * as productsActions from "store/products/actions";
 import { useNavigate } from "react-router-dom";
 
-export const ProductList = ({ getProductListRequest, productList }) => {
+export const ProductList = ({
+  getProductListRequest,
+  productList,
+  auth_state,
+}) => {
   let navigate = useNavigate();
   useEffect(() => {
     getProductListRequest();
@@ -30,9 +34,11 @@ export const ProductList = ({ getProductListRequest, productList }) => {
                     <td>
                       <button
                         className="btn-blue"
-                        onClick={() =>
-                          navigate(`/editar-produto/${item.id}`)
-                        }
+                        onClick={() => {
+                          if (auth_state.data.perfil === "PRODUCAO") return;
+                          navigate(`/editar-produto/${item.id}`);
+                        }}
+                        disabled={auth_state.data.perfil === "PRODUCAO"}
                       >
                         Editar
                       </button>
@@ -51,6 +57,7 @@ export const ProductList = ({ getProductListRequest, productList }) => {
 const mapStateToProps = (state) => {
   return {
     productList: state.products.list,
+    auth_state: state.auth,
   };
 };
 

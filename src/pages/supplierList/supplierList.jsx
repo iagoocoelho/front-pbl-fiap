@@ -4,7 +4,11 @@ import { Table } from "react-bootstrap";
 import * as suppliersActions from "store/suppliers/actions";
 import { useNavigate } from "react-router-dom";
 
-export const SupplierList = ({ getSupplierListRequest, supplierList }) => {
+export const SupplierList = ({
+  getSupplierListRequest,
+  supplierList,
+  auth_state,
+}) => {
   let navigate = useNavigate();
   useEffect(() => {
     getSupplierListRequest();
@@ -32,9 +36,11 @@ export const SupplierList = ({ getSupplierListRequest, supplierList }) => {
                     <td>
                       <button
                         className="btn-blue"
-                        onClick={() =>
-                          navigate(`/editar-fornecedor/${item.id}`)
-                        }
+                        onClick={() => {
+                          if (auth_state.data.perfil === "PRODUCAO") return;
+                          navigate(`/editar-fornecedor/${item.id}`);
+                        }}
+                        disabled={auth_state.data.perfil === "PRODUCAO"}
                       >
                         Editar
                       </button>
@@ -53,6 +59,7 @@ export const SupplierList = ({ getSupplierListRequest, supplierList }) => {
 const mapStateToProps = (state) => {
   return {
     supplierList: state.suppliers.list,
+    auth_state: state.auth,
   };
 };
 
